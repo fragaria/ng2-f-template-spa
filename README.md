@@ -9,12 +9,7 @@
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
-- Upravte název aplikace v souborech (viz TODO komentáře)
-    - METADATA.title v config/webpack.common.js
-    - junitReporter.suite v config/karma.conf.js
-    - COMMIT_PREFIX v gulp/tasks/bump.js
-    - groupId, artifactId a finalName v gulp/tasks/maven-deploy.js
-    - projectName a projectKey v gulp/tasks/sonar.js
+- Spusťte `gulp init` z rootu projektu a zadávejte údaje dle pokynů
 
 ### Tasky (build a běh aplikace)
 - `npm start` - spuštění aplikace v DEV režimu

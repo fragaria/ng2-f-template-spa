@@ -8,6 +8,7 @@
     "url": "https://github.com/fragaria/ng2-f-template-spa.git"
   },
   "scripts": {
+    "init": "gulp init",
     "protractor": "protractor",
     "rimraf": "rimraf",
     "tslint": "tslint",

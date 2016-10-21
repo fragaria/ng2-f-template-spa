@@ -8,6 +8,7 @@ var prompt = require('gulp-prompt');
 var forReplace = [
   // first elem of item is str for replacement and second is key to projectData
   [ 'ng2-f-template-spa', 'normalizedProjectName' ],
+  [ 'Seed template for SPA', 'projectDescription' ],
   [ 'seed-app-frontend', 'normalizedProjectNameWithTail' ],
   [ 'SEED APP', 'upperCasedProjectName' ],
   [ 'seed-app', 'normalizedProjectName' ],
@@ -47,7 +48,7 @@ function replaceTemplatePatternsInFiles(projectData) {
 
 function userInputsPostProcess(userInputs) {
   var projectName = userInputs.projectName ? userInputs.projectName : 'ng2 awesome project';
-  var projectData = { projectName: projectName };
+  var projectData = { projectName: projectName, projectDescription: userInputs.projectDescription };
 
   projectData['normalizedProjectName'] = normalizeProjectName(projectName);
   projectData['upperCasedProjectName'] = projectName.toUpperCase();
@@ -63,5 +64,10 @@ gulp.task('init', function() {
     type: 'input',
     name: 'projectName',
     message: 'Get project name?'
+  },
+  {
+    type: 'input',
+    name: 'projectDescription',
+    message: 'Get project description?'
   }], userInputsPostProcess));
 });
