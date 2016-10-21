@@ -1,0 +1,17 @@
+.idea
+.DS_Store
+.sonar
+.sonar_lock
+
+/dist/
+/doc/
+/node_modules/
+/npm-debug.log
+/reports/
+/sonar/node_modules
+/sonar/reports
+/typings/
+
+/src/*.js
+*.js.map
+.npmrc
