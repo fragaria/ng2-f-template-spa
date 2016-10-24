@@ -138,7 +138,7 @@ module.exports = {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
       {
@@ -148,6 +148,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        include: helpers.root('src', 'app'),
+        loaders: ['raw', 'sass']
+      },
+      {
+        test: /\.scss$/,
+        exclude: helpers.root('src', 'app'),
         loaders: ['style', 'css', 'postcss', 'sass']
       },
       {

@@ -1,7 +1,7 @@
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
-
+const combineLoaders = require('webpack-combine-loaders')
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 /**
@@ -60,10 +60,20 @@ module.exports = {
        */
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
-        query: {
-          tsconfig: 'tsconfig.test.json'
-        },
+        loader: combineLoaders([
+          {
+            loader: 'awesome-typescript-loader',
+            query: {
+              tsconfig: 'tsconfig.test.json'
+            }
+          },
+          {
+            loader: 'angular2-template-loader',
+            query: {
+              tsconfig: 'tsconfig.test.json'
+            }
+          }
+        ]),
         exclude: [/\.e2e\.ts$/]
       },
       /**
@@ -71,7 +81,16 @@ module.exports = {
        */
       {test: /\.json$/, loader: 'json-loader'},
       {test: /\.html$/, loader: 'raw-loader'},
-      {test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass']}
+      {
+        test: /\.scss$/,
+        include: helpers.root('src', 'app'),
+        loaders: ['raw', 'sass']
+      },
+      {
+        test: /\.scss$/,
+        exclude: helpers.root('src', 'app'),
+        loaders: ['style', 'css', 'postcss', 'sass']
+      }
     ],
     postLoaders: [
       /**
