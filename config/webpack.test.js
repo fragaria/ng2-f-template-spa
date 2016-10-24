@@ -84,10 +84,12 @@ module.exports = {
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
+        exclude: helpers.root('src', 'app', 'styles'),
         loaders: ['raw', 'sass']
       },
       {
         test: /\.scss$/,
+        include: [helpers.root('*'), helpers.root('src', 'app', 'styles')],
         exclude: helpers.root('src', 'app'),
         loaders: ['style', 'css', 'postcss', 'sass']
       }
