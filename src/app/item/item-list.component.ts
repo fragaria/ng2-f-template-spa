@@ -5,7 +5,7 @@ import { ItemService } from './item.service';
 
 @Component({
   selector: 'sa-item-list',
-  template: require('./item-list.component.html')
+  templateUrl: 'item-list.component.html'
 })
 export class ItemListComponent implements OnInit {
   items: Promise<Item[]>;
