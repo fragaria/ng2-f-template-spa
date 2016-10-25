@@ -89,6 +89,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.8.0",
     "node-sass": "~3.7.0",
+    "null-loader": "^0.1.1",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.12",
     "postcss": "^5.2.4",
