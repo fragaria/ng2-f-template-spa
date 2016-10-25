@@ -69,17 +69,13 @@ gulp.task('sonar:upload', ['sonar:analyze'], function () {
 
   var options = {
     sonar: {
-      login: 'username',//process.env.SONAR_LOGIN,
-      password: 'password', //process.env.SONAR_PASSWORD,
+      login: process.env.SONAR_LOGIN,
+      password: process.env.SONAR_PASSWORD,
       host: {
-        url: 'http://localhost:9000'//TODO: add real url
+        url: 'https://kb-fast1.f-app.it/sonar'//TODO: add real url
       },
       log: {
         level: 'DEBUG'
-      },
-      jdbc: {
-        username: 'sonar',
-        url: 'jdbc:h2:tcp://localhost:9092/sonar' //TODO: add real url
       },
       projectKey: projectKey,
       projectName: projectName,
