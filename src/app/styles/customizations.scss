@@ -1,1 +1,27 @@
+//Datepicker icons - https://github.com/valor-software/ng2-bootstrap/issues/507
 
+.glyphicon {
+  @extend .fa;
+
+  &.glyphicon-chevron-left {
+    @extend .fa-chevron-left;
+  }
+
+  &.glyphicon-chevron-right {
+    @extend .fa-chevron-right;
+  }
+
+  &.glyphicon-chevron-up {
+    @extend .fa-chevron-up;
+  }
+
+  &.glyphicon-chevron-down {
+    @extend .fa-chevron-down;
+  }
+
+  // tabs classes
+  &.glyphicon-remove-circle {
+    @extend .fa-remove;
+  }
+
+}

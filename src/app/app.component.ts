@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, ViewContainerRef  } from '@angular/core';
 @Component({
   selector: 'seed-app',
   template: `
@@ -10,10 +9,19 @@ import { Component } from '@angular/core';
           <li class="nav-item">
             <a routerLink="items" routerLinkActive="active" class="nav-link">Items</a>
           </li>
+          <li class="nav-item">
+            <a routerLink="bootstrap" routerLinkActive="active" class="nav-link">Bootstrap</a>
+          </li>
         </ul>
       </nav>
       <router-outlet></router-outlet>
     </div>
   `
 })
-export class AppComponent { }
+export class AppComponent {
+
+    public constructor(private viewContainerRef: ViewContainerRef) {
+
+    }
+
+}

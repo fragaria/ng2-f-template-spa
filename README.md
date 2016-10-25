@@ -40,3 +40,6 @@
 - `typings/` - typescript definice
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
+
+### ng2-bootstrap BS4
+- `./src/app/styles/customization.scss` - nutne doplnit/zkontrolovat pouzivane glyphicons z duvodu kompatibility s bootstrap3

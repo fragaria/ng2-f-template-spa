@@ -1,0 +1,8 @@
+<alert *ngFor="let alert of alerts;let i = index" [type]="alert.type" [dismissible]="alert?.closable" (close)="closeAlert(i)">
+    {{ alert?.msg }}
+</alert>
+
+<alert [dismissOnTimeout]="dismissOnTimeout" (close)="resetAlert($event)">This alert will toggle in 3s</alert>
+
+<button type="button" class='btn btn-primary' (click)="addAlert()">Add Alert</button>
+

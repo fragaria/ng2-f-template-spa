@@ -4,13 +4,15 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ItemModule } from './item';
 import { SharedModule } from './shared';
+import { BootstrapModule } from './bootstrap';
 
 @NgModule({
   imports: [
     BrowserModule,
     routing,
     SharedModule,
-    ItemModule
+    ItemModule,
+    BootstrapModule,
   ],
   declarations: [AppComponent],
   exports: [AppComponent],
