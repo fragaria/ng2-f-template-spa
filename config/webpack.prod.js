@@ -1,6 +1,7 @@
 'use strict';
 
 const helpers = require('./helpers');
+const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
 
@@ -40,6 +41,25 @@ module.exports = webpackMerge.smart(commonConfig, {
    */
   debug: false,
 
+  output: {
+
+    /**
+     * Specifies the name of each output file on disk.
+     * IMPORTANT: You must not specify an absolute path here!
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     */
+    filename: '[name].[hash].bundle.js',
+
+    /**
+     * The filename of non-entry chunks as relative path
+     * inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     */
+    chunkFilename: '[id].[hash].chunk.js'
+  },
+
   plugins: [
     /**
      * Plugin: DefinePlugin
@@ -51,6 +71,7 @@ module.exports = webpackMerge.smart(commonConfig, {
      * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
      */
     // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
+    new webpack.NoErrorsPlugin(),
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
@@ -60,6 +81,7 @@ module.exports = webpackMerge.smart(commonConfig, {
         'HMR': METADATA.HMR,
       }
     }),
+    new webpack.optimize.DedupePlugin(),
     new UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -67,7 +89,7 @@ module.exports = webpackMerge.smart(commonConfig, {
       output: {
         comments: false,
       },
-    }),
+    })
   ],
 
   /**
