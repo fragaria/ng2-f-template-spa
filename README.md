@@ -9,7 +9,7 @@
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
-- Spusťte `./node_modules/.bin/gulp init` z rootu projektu a zadávejte údaje dle pokynů
+- Spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů
 
 ### Tasky (build a běh aplikace)
 - `npm start` - spuštění aplikace v DEV režimu
@@ -18,12 +18,12 @@
 - `npm run docs`
 
 ### Tasky (validace)
-- `./node_modules/.bin/gulp sonar` pro spuštění analýzy souborů na chyby
+- `npm run sonar` pro spuštění analýzy souborů na chyby
 
 ### Tasky (release)
-- `./node_modules/.bin/gulp bump [--major⎮--minor⎮--patch]` - pro zvednutí verze projektu při verzování major.minor.patch, default patch
-- `./node_modules/.bin/gulp bump-push-[develop|master]` - pro otagování stávající verze a pushunutí inkrementu verze pro další vývoj do git repozitory
-- `./node_modules/.bin/gulp maven:deploy:[develop|master]` pro výrobu balíku z větve a nahrání do maven repozitory
+- `npm run bump [--major⎮--minor⎮--patch]` - pro zvednutí verze projektu při verzování major.minor.patch, default patch
+- `npm run gulp bump-push-[develop|master]` - pro otagování stávající verze a pushunutí inkrementu verze pro další vývoj do git repozitory
+- `npm run gulp maven:deploy:[develop|master]` pro výrobu balíku z větve a nahrání do maven repozitory
 
 ### Důležité adresáře a soubory
 - `config/` - nastavení konfigurace buildu pro různé prostředí
