@@ -9,6 +9,7 @@ import { ItemService } from './item.service';
 })
 export class ItemDetailComponent implements OnInit {
   item: Item;
+  errorMsg: string;
 
   constructor(private route: ActivatedRoute,
               private itemService: ItemService) {
@@ -16,6 +17,7 @@ export class ItemDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = parseInt(this.route.snapshot.params['id'], 10);
-    this.itemService.getItem(id).then(item => this.item = item);
+    this.itemService.getItem(id).then(item => this.item = item)
+                                .catch(msg => this.errorMsg = msg);
   }
 }

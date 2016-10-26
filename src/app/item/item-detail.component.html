@@ -3,6 +3,9 @@
         <h1>Item Detail:</h1>
     </div>
 </div>
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+  Server Error
+</div>
 <div *ngIf="item">
     <div class="form-group row">
         <span class="col-xs-2 col-form-label">Id</span>
