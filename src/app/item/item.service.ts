@@ -8,7 +8,7 @@ import { Item } from './item.model';
 @Injectable()
 export class ItemService {
   private headers = new Headers({'Accept': 'application/json'});
-  private itemsUrl = 'item/items';  // URL to web API
+  private itemsUrl = 'api/items';  // URL to web API
   //private itemsUrl = 'https://private-0f9a88-itemsapi2.apiary-mock.com/items';
 
   constructor (private http: Http) {}
