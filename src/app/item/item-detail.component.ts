@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { HttpError } from '../shared';
+
 import { Item } from './item.model';
 import { ItemService } from './item.service';
 
@@ -15,9 +18,20 @@ export class ItemDetailComponent implements OnInit {
               private itemService: ItemService) {
   }
 
+  processErrorMsg(error: HttpError) {
+    console.log(error);
+    if (error.status = 404) {
+      this.errorMsg = 'Item does not exist';
+    }
+    else {
+      this.errorMsg = 'Server error';
+    }
+  }
+
   ngOnInit() {
     let id = parseInt(this.route.snapshot.params['id'], 10);
     this.itemService.getItem(id).then(item => this.item = item)
-                                .catch(msg => this.errorMsg = msg);
+                                .catch(error => this.processErrorMsg(error));
   }
+
 }
