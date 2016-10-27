@@ -49,8 +49,7 @@
     "watch": "npm run build -- --watch",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "postinstall": "typings install",
-    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' --exclude '**/index.ts' ./src/",
-    "sonar": "gulp sonar"
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' --exclude '**/index.ts' ./src/"
   },
   "devDependencies": {
     "@types/istanbul": "^0.4.22-alpha",
@@ -109,7 +108,6 @@
     "sonar-web-frontend-reporters": "^2.1.0",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
-    "systemjs": "^0.19.29",
     "ts-helpers": "1.1.1",
     "tslint": "^3.15.1",
     "tslint-loader": "^2.1.4",
