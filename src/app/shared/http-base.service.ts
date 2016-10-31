@@ -8,46 +8,86 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HttpBaseService<T> {
   protected headers = new Headers({'Accept': 'application/json'});
-  protected url = null; // override this in subclass
-  protected model = null; // override this in subclass
+  protected params = new URLSearchParams();
+  protected model = null;
 
   constructor (protected http: Http) { }
 
-  addObject (obj: T, url?: string): Promise<T> {
-    const targetUrl = url || this.url;
+  addObject (
+    obj: T,
+    url: string,
+    model?: any,
+    successCallback?: (res: Response) => T,
+    errorCallback?: (error: Response | any) => Promise<void>,
+    headers?: Headers,
+    params?: URLSearchParams): Promise<T> {
 
-    return this.http.post(targetUrl, JSON.stringify(obj), {headers: this.headers})
+    this.model = model || null;
+    const targetErrorCallback = errorCallback || this.handleError;
+    const targetHeaders = headers || this.headers;
+    const targetParams = params || this.params;
+
+    return this.http.post(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
                     .toPromise()
-                    .then(response => this.extractDataToObj(response))
-                    .catch(this.handleError);
+                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+                    .catch(targetErrorCallback);
   }
 
-  getObjects (url?: string, params?: URLSearchParams): Promise<T[]> {
-    const targetUrl = url || this.url;
-    const targetParams = params || new URLSearchParams();
+  getObjects (
+    url: string,
+    model?: any,
+    successCallback?: (res: Response) => T[],
+    errorCallback?: (error: Response | any) => Promise<void>,
+    headers?: Headers,
+    params?: URLSearchParams): Promise<T[]> {
 
-    return this.http.get(targetUrl, {headers: this.headers, search: targetParams})
+    this.model = model || null;
+    const targetErrorCallback = errorCallback || this.handleError;
+    const targetHeaders = headers || this.headers;
+    const targetParams = params || this.params;
+
+    return this.http.get(url, {headers: targetHeaders, search: targetParams})
                     .toPromise()
-                    .then(response => this.extractDataToObjects(response))
-                    .catch(this.handleError);
+                    .then(response => successCallback ? successCallback(response) : this.extractDataToObjects(response))
+                    .catch(targetErrorCallback);
   }
 
-  getObject (id: number | string, url?: string): Promise<T> {
-    const targetUrl = url || `${this.url}/${id}`;
+  getObject (
+    url: string,
+    model?: any,
+    successCallback?: (res: Response) => T,
+    errorCallback?: (error: Response | any) => Promise<void>,
+    headers?: Headers,
+    params?: URLSearchParams): Promise<T> {
 
-    return this.http.get(targetUrl, {headers: this.headers})
+    this.model = model || null;
+    const targetErrorCallback = errorCallback || this.handleError;
+    const targetHeaders = headers || this.headers;
+    const targetParams = params || this.params;
+
+    return this.http.get(url, {headers: targetHeaders, search: targetParams})
                     .toPromise()
-                    .then(response => this.extractDataToObj(response))
-                    .catch(this.handleError);
+                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+                    .catch(targetErrorCallback);
   }
 
-  updateObject (obj: T, url?: string): Promise<T> {
-    const targetUrl = url || this.url;
+  updateObject (
+    obj: T,
+    url: string,
+    model?: any,
+    successCallback?: (res: Response) => T,
+    errorCallback?: (error: Response | any) => Promise<void>,
+    headers?: Headers,
+    params?: URLSearchParams): Promise<T> {
 
-    return this.http.put(targetUrl, JSON.stringify(obj), {headers: this.headers})
+    this.model = model || null;
+    const targetErrorCallback = errorCallback || this.handleError;
+    const targetHeaders = headers || this.headers;
+    const targetParams = params || this.params;
+
+    return this.http.put(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
                     .toPromise()
-                    .then(response => this.extractDataToObj(response))
-                    .catch(this.handleError);
+                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))                    .catch(targetErrorCallback);
   }
 
   protected extractData(res: Response): any {
@@ -75,7 +115,7 @@ export class HttpBaseService<T> {
     return obj
   }
 
-  protected handleError (error: Response | any) {
+  protected handleError (error: Response | any): Promise<void> {
     // TODO: use real logging logic
     let errMsg: string;
     let errorObj: HttpError;
