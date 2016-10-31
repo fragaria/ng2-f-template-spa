@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { HttpError } from './errors';
 
@@ -12,10 +12,20 @@ export class HttpBaseService<T> {
 
   constructor (protected http: Http) {}
 
-  getObjects (url?: string): Promise<T[]> {
+  addObject (obj: T, url?: string): Promise<T> {
     const targetUrl = url || this.url;
 
-    return this.http.get(targetUrl, {headers: this.headers})
+    return this.http.post(targetUrl, JSON.stringify(obj), {headers: this.headers})
+                    .toPromise()
+                    .then(response => this.extractDataToObj(response))
+                    .catch(this.handleError);
+  }
+
+  getObjects (url?: string, params?: URLSearchParams): Promise<T[]> {
+    const targetUrl = url || this.url;
+    const targetParams = params || new URLSearchParams();
+
+    return this.http.get(targetUrl, {headers: this.headers, search: targetParams})
                     .toPromise()
                     .then(response => this.extractDataToObjects(response))
                     .catch(this.handleError);
@@ -25,6 +35,15 @@ export class HttpBaseService<T> {
     const targetUrl = url || `${this.url}/${id}`;
 
     return this.http.get(targetUrl, {headers: this.headers})
+                    .toPromise()
+                    .then(response => this.extractDataToObj(response))
+                    .catch(this.handleError);
+  }
+
+  updateObject (obj: T, url?: string): Promise<T> {
+    const targetUrl = url || this.url;
+
+    return this.http.put(targetUrl, JSON.stringify(obj), {headers: this.headers})
                     .toPromise()
                     .then(response => this.extractDataToObj(response))
                     .catch(this.handleError);
