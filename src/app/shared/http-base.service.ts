@@ -9,8 +9,9 @@ import 'rxjs/add/operator/toPromise';
 export class HttpBaseService<T> {
   protected headers = new Headers({'Accept': 'application/json'});
   protected url = null; // override this in subclass
+  protected model = null; // override this in subclass
 
-  constructor (protected http: Http) {}
+  constructor (protected http: Http) { }
 
   addObject (obj: T, url?: string): Promise<T> {
     const targetUrl = url || this.url;
@@ -55,11 +56,23 @@ export class HttpBaseService<T> {
   }
 
   protected extractDataToObj(res: Response): T | null {
-    return this.extractData(res) as T || null;
+    let obj = this.extractData(res) as T || null;
+    if (obj) obj = this.toParticularType(obj);
+    return obj
   }
 
   protected extractDataToObjects(res: Response): T[] {
-    return this.extractData(res) as T[] || <T[]>[];
+    let objects = this.extractData(res) as T[] || <T[]>[];
+    if (objects.length != 0) objects = objects.map((obj) => this.toParticularType(obj));
+    return objects
+  }
+
+  protected toParticularType(obj: any): T {
+    // if model is specified and has constructFromObj method call it
+    if (this.model && typeof this.model.constructFromObj !== 'undefined') {
+      return this.model.constructFromObj(obj)
+    }
+    return obj
   }
 
   protected handleError (error: Response | any) {

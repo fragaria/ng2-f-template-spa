@@ -8,6 +8,7 @@ import { Item } from './item.model';
 export class ItemService extends HttpBaseService<Item> {
   protected url = 'api/items';  // URL to web API
   //private itemsUrl = 'https://private-0f9a88-itemsapi2.apiary-mock.com/items';
+  protected model = Item;
 
   constructor (protected http: Http) { super(http); }
 
