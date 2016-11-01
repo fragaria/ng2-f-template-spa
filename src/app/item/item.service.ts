@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpBaseService } from '../shared';
 import { Item } from './item.model';
 
+import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class ItemService {
   protected url = 'api/items';  // URL to web API
@@ -11,11 +13,11 @@ export class ItemService {
 
   constructor (protected http: HttpBaseService<Item>) { }
 
-  getItems (): Promise<Item[]> {
+  getItems (): Observable<Item[]> {
     return this.http.getObjects(this.url, this.model)
   }
 
-  getItem (id: number | string): Promise<Item> {
+  getItem (id: number | string): Observable<Item> {
     const url = `${this.url}/${id}`;
     return this.http.getObject(url, this.model)
   }

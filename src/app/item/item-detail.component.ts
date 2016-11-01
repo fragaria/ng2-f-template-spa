@@ -30,8 +30,9 @@ export class ItemDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = parseInt(this.route.snapshot.params['id'], 10);
-    this.itemService.getItem(id).then(item => this.item = item)
-                                .catch(error => this.processErrorMsg(error));
+    this.itemService.getItem(id).subscribe(
+                                  item => this.item = item,
+                                  error => this.processErrorMsg(error));
   }
 
 }

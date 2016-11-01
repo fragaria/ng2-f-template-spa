@@ -3,7 +3,7 @@ import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angul
 
 import { HttpError } from './errors';
 
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class HttpBaseService<T> {
@@ -18,9 +18,9 @@ export class HttpBaseService<T> {
     url: string,
     model?: any,
     successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Promise<void>,
+    errorCallback?: (error: Response | any) => Observable<T>,
     headers?: Headers,
-    params?: URLSearchParams): Promise<T> {
+    params?: URLSearchParams): Observable<T> {
 
     this.model = model || null;
     const targetErrorCallback = errorCallback || this.handleError;
@@ -28,8 +28,7 @@ export class HttpBaseService<T> {
     const targetParams = params || this.params;
 
     return this.http.post(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
-                    .toPromise()
-                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
                     .catch(targetErrorCallback);
   }
 
@@ -37,9 +36,9 @@ export class HttpBaseService<T> {
     url: string,
     model?: any,
     successCallback?: (res: Response) => T[],
-    errorCallback?: (error: Response | any) => Promise<void>,
+    errorCallback?: (error: Response | any) => Observable<HttpError>,
     headers?: Headers,
-    params?: URLSearchParams): Promise<T[]> {
+    params?: URLSearchParams): Observable<T[]> {
 
     this.model = model || null;
     const targetErrorCallback = errorCallback || this.handleError;
@@ -47,8 +46,7 @@ export class HttpBaseService<T> {
     const targetParams = params || this.params;
 
     return this.http.get(url, {headers: targetHeaders, search: targetParams})
-                    .toPromise()
-                    .then(response => successCallback ? successCallback(response) : this.extractDataToObjects(response))
+                    .map(response => successCallback ? successCallback(response) : this.extractDataToObjects(response))
                     .catch(targetErrorCallback);
   }
 
@@ -56,9 +54,9 @@ export class HttpBaseService<T> {
     url: string,
     model?: any,
     successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Promise<void>,
+    errorCallback?: (error: Response | any) => Observable<HttpError>,
     headers?: Headers,
-    params?: URLSearchParams): Promise<T> {
+    params?: URLSearchParams): Observable<T> {
 
     this.model = model || null;
     const targetErrorCallback = errorCallback || this.handleError;
@@ -66,8 +64,7 @@ export class HttpBaseService<T> {
     const targetParams = params || this.params;
 
     return this.http.get(url, {headers: targetHeaders, search: targetParams})
-                    .toPromise()
-                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
                     .catch(targetErrorCallback);
   }
 
@@ -76,9 +73,9 @@ export class HttpBaseService<T> {
     url: string,
     model?: any,
     successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Promise<void>,
+    errorCallback?: (error: Response | any) => Observable<HttpError>,
     headers?: Headers,
-    params?: URLSearchParams): Promise<T> {
+    params?: URLSearchParams): Observable<T> {
 
     this.model = model || null;
     const targetErrorCallback = errorCallback || this.handleError;
@@ -86,8 +83,8 @@ export class HttpBaseService<T> {
     const targetParams = params || this.params;
 
     return this.http.put(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
-                    .toPromise()
-                    .then(response => successCallback ? successCallback(response) : this.extractDataToObj(response))                    .catch(targetErrorCallback);
+                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+                    .catch(targetErrorCallback);
   }
 
   protected extractData(res: Response): any {
@@ -115,7 +112,7 @@ export class HttpBaseService<T> {
     return obj
   }
 
-  protected handleError (error: Response | any): Promise<void> {
+  protected handleError (error: Response | any): Observable<any> {
     // TODO: use real logging logic
     let errMsg: string;
     let errorObj: HttpError;
@@ -130,6 +127,6 @@ export class HttpBaseService<T> {
       errorObj = { status: 500 as number, msg: errMsg };
     }
     console.error(errMsg);
-    return Promise.reject(errorObj);
+    return Observable.throw(errorObj);
   }
 }
