@@ -97,7 +97,7 @@
     "phantomjs-prebuilt": "^2.1.12",
     "postcss": "^5.2.4",
     "postcss-loader": "^0.13.0",
-    "protractor": "^3.2.2",
+    "protractor": "^4.0.10",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.8",
     "remap-istanbul": "^0.6.4",
