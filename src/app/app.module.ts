@@ -7,6 +7,7 @@ import { MockApiModule } from 'ng2-f-mock-api';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ItemModule } from './item';
+import { consoleCatcher, Logger, LOGGING_ERROR_HANDLER_PROVIDERS } from './logging'
 import { SharedModule } from './shared';
 
 @NgModule({
@@ -20,6 +21,15 @@ import { SharedModule } from './shared';
   ],
   declarations: [AppComponent],
   exports: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    Logger,
+    LOGGING_ERROR_HANDLER_PROVIDERS
+  ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private logger: Logger) {
+    consoleCatcher(logger);
+  }
+}
