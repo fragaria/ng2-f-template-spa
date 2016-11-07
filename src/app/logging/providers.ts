@@ -15,7 +15,7 @@ export var LOGGING_ERROR_HANDLER_PROVIDERS = [
   }
 ];
 
-export const OFF_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.OFF } }, Logger ];
+export const OFF_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { allowConsoleCatch: false, level: Level.OFF } }, Logger ];
 export const ERROR_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.ERROR } }, Logger ];
 export const WARN_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.WARN } }, Logger ];
 export const INFO_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.INFO } }, Logger ];

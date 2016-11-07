@@ -34,30 +34,43 @@ export class LoggingErrorHandler implements ErrorHandler {
     const originalStack = this._findOriginalStack(error);
     const context = this._findContext(error);
     let errorData: any = {};
+    let msg: any;
 
-    // Angular original call: this._console.error(`EXCEPTION: ${this._extractMessage(error)}`);
+    msg = `EXCEPTION: ${this._extractMessage(error)}`;
+    errorData['exception'] = msg;
 
-    errorData['exception'] = `EXCEPTION: ${this._extractMessage(error)}`;
+    if (!this.logger.isEnabled()) {
+      this._console.error(msg);
+    }
 
     if (originalError) {
-      // Angular original call: this._console.error(`ORIGINAL EXCEPTION: ${this._extractMessage(originalError)}`);
-      errorData['originalException'] = `ORIGINAL EXCEPTION: ${this._extractMessage(originalError)}`;
+      msg = `ORIGINAL EXCEPTION: ${this._extractMessage(originalError)}`;
+      errorData['originalException'] = msg;
+
+      if (!this.logger.isEnabled()) {
+        this._console.error(msg);
+      }
+
     }
 
     if (originalStack) {
-      // Angular original call: this._console.error('ORIGINAL STACKTRACE:');
-      // Angular original call: this._console.error(originalStack);
+
       errorData['originalStacktrace'] = originalStack;
 
       // Log to console for easier debugging
-      // FIXME: look for better solution
-      if (this.logger.isLogEnabled()) {
+      if (this.logger.isLogEnabled() || !this.logger.isEnabled()) {
         this._console.error('ORIGINAL STACKTRACE:');
         this._console.error(originalStack);
       }
     }
 
-    if (context) errorData['errorContext'] = context;
+    if (context) {
+      errorData['errorContext'] = context;
+      if (!this.logger.isEnabled()) {
+        this._console.error('ERROR CONTEXT:');
+        this._console.error(context);
+      }
+    }
 
     this.logger.error(errorData);
 

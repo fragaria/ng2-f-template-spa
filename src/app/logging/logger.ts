@@ -161,6 +161,7 @@ export class Logger {
         return this;
     }
 
+    isEnabled = (): boolean => this.level != Level.OFF;
     isErrorEnabled = (): boolean => this.level >= Level.ERROR;
     isWarnEnabled = (): boolean => this.level >= Level.WARN;
     isInfoEnabled = (): boolean => this.level >= Level.INFO;
