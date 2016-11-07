@@ -9,7 +9,6 @@ import { routing } from './app.routing';
 import { ItemModule } from './item';
 import { SharedModule } from './shared';
 import {
-  consoleCatcher,
   Logger,
   LOG_LOGGER_PROVIDERS,
   LOGGING_ERROR_HANDLER_PROVIDERS } from './logging'
@@ -35,6 +34,6 @@ import {
 export class AppModule {
 
   constructor(private logger: Logger) {
-    consoleCatcher(logger);
+    logger.catchConsole();
   }
 }

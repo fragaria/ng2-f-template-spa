@@ -7,26 +7,79 @@ import { Injectable, Optional } from "@angular/core";
 
 import { Level } from "./level";
 
+let consoleCatched: boolean = false;
+
+export function catchConsole(logger: Logger) {
+  if (!consoleCatched) {
+    consoleCatched = true;
+
+    var oldLogFunctions = {
+      'log': null,
+      'debug': null,
+      'info': null,
+      'warn': null,
+      'error': null
+    }
+
+    /* IE9 no console hack */
+
+    if (typeof console === 'undefined') {
+      (window as any).console = {
+        log: function(){},
+        debug: function(){},
+        info: function(){},
+        warn: function(){},
+        error: function(){}
+      };
+    }
+
+    for (let methodName in oldLogFunctions) {
+      if (console && console[methodName]) {
+        oldLogFunctions[methodName] = console[methodName];
+        console[methodName] = function () {
+
+          //modern browsers
+          if (oldLogFunctions[methodName].apply) {
+            logger.consoleMethods[methodName] = function() { oldLogFunctions[methodName].apply(console, arguments) };
+          }
+          //ie9
+          else {
+            logger.consoleMethods[methodName] = Function.prototype.bind.call(oldLogFunctions[methodName], console);
+          }
+
+          // send message to your logger.
+          logger[methodName].apply(logger, arguments);
+
+        };
+      }
+    }
+  }
+
+}
+
 export class Options {
-    level: Level;
-    global: boolean;
-    globalAs: string;
-    store: boolean;
-    storeAs: string;
+  allowConsoleCatch: boolean;
+  level: Level;
+  global: boolean;
+  globalAs: string;
+  store: boolean;
+  storeAs: string;
 }
 
 // Temporal until https://github.com/angular/angular/issues/7344 gets fixed.
 const DEFAULT_OPTIONS: Options = {
-    level: Level.LOG,
-    global: true,
-    globalAs: "logger",
-    store: false,
-    storeAs: "angular2.logger.level"
+  allowConsoleCatch: true,
+  level: Level.LOG,
+  global: true,
+  globalAs: "logger",
+  store: false,
+  storeAs: "angular2.logger.level"
 };
 
 @Injectable()
 export class Logger {
 
+    private _allowConsoleCatch: boolean;
     private _level: Level;
     private _globalAs: string;
     private _store: boolean;
@@ -45,8 +98,9 @@ export class Logger {
     constructor( @Optional() options?: Options ) {
 
         // Move this to the constructor definition when optional parameters are working with @Injectable: https://github.com/angular/angular/issues/7344
-        let { level, global, globalAs, store, storeAs } = Object.assign( {}, DEFAULT_OPTIONS, options );
+        let { allowConsoleCatch, level, global, globalAs, store, storeAs } = Object.assign( {}, DEFAULT_OPTIONS, options );
 
+        this._allowConsoleCatch = allowConsoleCatch;
         this._level = level;
         this._globalAs = globalAs;
         this._storeAs = storeAs;
@@ -120,4 +174,7 @@ export class Logger {
         this._level = level;
     }
 
+    catchConsole() {
+      if (this._allowConsoleCatch) catchConsole(this);
+    }
 }
