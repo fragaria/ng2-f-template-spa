@@ -31,17 +31,18 @@ export function consoleCatcher(logger: Logger) {
         oldLogFunctions[methodName] = console[methodName];
         console[methodName] = function () {
 
-          // send message to your logger.
-          logger[methodName].apply(logger, arguments);
-
           //modern browsers
           if (oldLogFunctions[methodName].apply) {
-            oldLogFunctions[methodName].apply(console, arguments);
+            logger.consoleMethods[methodName] = function() { oldLogFunctions[methodName].apply(console, arguments) };
           }
           //ie9
           else {
-            Function.prototype.bind.call(oldLogFunctions[methodName], console).apply(arguments);
+            logger.consoleMethods[methodName] = Function.prototype.bind.call(oldLogFunctions[methodName], console);
           }
+
+          // send message to your logger.
+          logger[methodName].apply(logger, arguments);
+
         };
       }
     }
