@@ -47,8 +47,11 @@ export function catchConsole(logger: Logger) {
             logger.consoleMethods[methodName] = Function.prototype.bind.call(oldLogFunctions[methodName], console);
           }
 
+          // for more than one arg in arguments wrrap to Array
+          // this is becouse of we want to have fixed logger api
+          let newArguments = arguments.length > 1 ? [arguments] : arguments;
           // send message to your logger.
-          logger[methodName].apply(logger, arguments);
+          logger[methodName].apply(logger, newArguments);
 
         };
       }
@@ -115,32 +118,39 @@ export class Logger {
 
     private _storeLevel(level: Level) { localStorage[ this._storeAs ] = level; }
 
-    error(message: any, ...optionalParams: any[]) {
-        this.isErrorEnabled() && this.sendMessage('error', message, ...optionalParams);
+    error(message: any, extraData?: Object, userData?: Object) {
+        this.isErrorEnabled() && this.sendMessage('error', message, extraData, userData);
     }
 
-    warn(message: any, ...optionalParams: any[]) {
-        this.isWarnEnabled() && this.sendMessage('warn', message, ...optionalParams);
+    warn(message: any, extraData?: Object, userData?: Object) {
+        this.isWarnEnabled() && this.sendMessage('warn', message, extraData, userData);
     }
 
-    info(message: any, ...optionalParams: any[]) {
-        this.isInfoEnabled() && this.sendMessage('info', message, ...optionalParams);
+    info(message: any, extraData?: Object, userData?: Object) {
+        this.isInfoEnabled() && this.sendMessage('info', message, extraData, userData);
     }
 
-    debug(message: any, ...optionalParams: any[]) {
-        this.isDebugEnabled() && this.sendMessage('debug', message, ...optionalParams);
+    debug(message: any, extraData?: Object, userData?: Object) {
+        this.isDebugEnabled() && this.sendMessage('debug', message, extraData, userData);
     }
 
-    log(message: any, ...optionalParams: any[]) {
-        this.isLogEnabled() && this.sendMessage('log', message, ...optionalParams);
+    log(message: any, extraData?: Object, userData?: Object) {
+        this.isLogEnabled() && this.sendMessage('log', message, extraData, userData);
     }
 
-    sendMessage(levelStr: string, message: any, ...optionalParams: any[]) {
+    sendMessage(levelStr: string, message: any, extraData?: Object, userData?: Object) {
       // TODO: Add remote log here
       let nowDate: Date = new Date();
       let dateStr: string = nowDate.toISOString();
-      let userData: any = this.getUserData();
-      this.consoleMethods[levelStr](`LOGGER ${dateStr}: `, message, ...optionalParams, userData);
+      let targetExtraData:any = this.updateObject(this.getExtraData(), extraData);
+      let targetUserData: any = this.updateObject(this.getUserData(), userData);
+      let params: any = [`LOGGER ${dateStr}: `, message, targetExtraData, targetUserData]
+
+      this.consoleMethods[levelStr](...params);
+    }
+
+    getExtraData(): any {
+      return {}
     }
 
     getUserData():any {
@@ -149,6 +159,15 @@ export class Logger {
         'location': window.location && window.location.href,
         'lang': navigator && navigator.language
       }
+    }
+
+    updateObject (baseObj: Object, expansionObj: Object): Object {
+      if (expansionObj) {
+        for (let prop in expansionObj) {
+          baseObj[prop] = expansionObj[prop];
+        }
+      }
+      return baseObj
     }
 
     global = () => ( <any> window )[this._globalAs] = this;
