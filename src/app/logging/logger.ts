@@ -139,7 +139,16 @@ export class Logger {
       // TODO: Add remote log here
       let nowDate: Date = new Date();
       let dateStr: string = nowDate.toISOString();
-      this.consoleMethods[levelStr](`LOGGER ${dateStr}: `, message, ...optionalParams);
+      let userData: any = this.getUserData();
+      this.consoleMethods[levelStr](`LOGGER ${dateStr}: `, message, ...optionalParams, userData);
+    }
+
+    getUserData():any {
+      return {
+        'User-Agent': navigator && navigator.userAgent,
+        'location': window.location && window.location.href,
+        'lang': navigator && navigator.language
+      }
     }
 
     global = () => ( <any> window )[this._globalAs] = this;
