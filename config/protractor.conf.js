@@ -2,7 +2,6 @@
  * @author: @AngularClass
  */
 
-// require('ts-node/register');
 var helpers = require('./helpers');
 
 exports.config = {
@@ -18,7 +17,6 @@ exports.config = {
   framework: 'jasmine2',
 
   chromeDriver: '../tests/e2e/selenium/chromedriver',
-  // chromedriver: "2.24",
 
   allScriptsTimeout: 110000,
 
@@ -36,10 +34,6 @@ exports.config = {
     'chromeOptions': {
       'args': ['show-fps-counter=true']
     }
-  },
-
-  onPrepare: function () {
-    // browser.ignoreSynchronization = true;
   },
 
   /**
