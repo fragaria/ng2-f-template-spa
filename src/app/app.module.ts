@@ -8,6 +8,11 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ItemModule } from './item';
 import { SharedModule } from './shared';
+import {
+  Logger,
+  LOG_LOGGER_PROVIDERS,
+  LOGGING_ERROR_HANDLER_PROVIDERS } from './logging'
+
 
 @NgModule({
   imports: [
@@ -20,6 +25,15 @@ import { SharedModule } from './shared';
   ],
   declarations: [AppComponent],
   exports: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    LOG_LOGGER_PROVIDERS,
+    LOGGING_ERROR_HANDLER_PROVIDERS
+  ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private logger: Logger) {
+    logger.catchConsole();
+  }
+}
