@@ -1,5 +1,10 @@
 ﻿{
   "app": {
     "title": "Hello, world!"
-  }
+  },
+  "title": "Hello, world!",
+  "bu0916.czech": "Czech",
+  "bu0917.english": "English",
+  "home.page": "Home Page",
+  "items": "Items"
 }

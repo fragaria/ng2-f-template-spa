@@ -7,12 +7,12 @@ import { MockApiModule } from 'ng2-f-mock-api';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ItemModule } from './item';
+import { LanguageModule, TestService } from './language';
 import { SharedModule } from './shared';
 import {
   Logger,
   LOG_LOGGER_PROVIDERS,
   LOGGING_ERROR_HANDLER_PROVIDERS } from './logging'
-
 
 @NgModule({
   imports: [
@@ -21,7 +21,8 @@ import {
     SharedModule,
     ItemModule,
     HttpModule,
-    MockApiModule
+    MockApiModule,
+    LanguageModule,
   ],
   declarations: [AppComponent],
   exports: [AppComponent],

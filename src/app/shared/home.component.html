@@ -1,8 +1,11 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="jumbotron">
-            <h1 class="display-3"><i class="fa fa-globe fa-3" aria-hidden="true"></i> Hello, world!</h1>
-            <p class="lead">Home page.</p>
+            <h1 class="display-3"><i class="fa fa-globe fa-3" aria-hidden="true"></i>{{ 'title' | translate }}</h1>
+            <p class="lead">{{ 'home.page' | translate }}</p>
+            <p>{{ 123456.456 | numberAsync | async }}</p>
+            <p>{{ '2026-01-01T00:00:00+00:00' | dateAsync | async }}</p>
+            <p>{{ '2026-01-01T00:00:00+00:00' | date }}</p>
         </div>
     </div>
 </div>

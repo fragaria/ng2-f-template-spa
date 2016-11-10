@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import './rxjs-operators';
+import { TranslateService } from 'ng2-translate/ng2-translate';
+import { LanguageService } from './language';
 
 @Component({
   selector: 'seed-app',
@@ -12,10 +14,22 @@ import './rxjs-operators';
           <li class="nav-item">
             <a routerLink="items" routerLinkActive="active" class="nav-link">Items</a>
           </li>
+          <li class="nav-item">
+            <lang-toggle></lang-toggle>
+          </li>
         </ul>
       </nav>
       <router-outlet></router-outlet>
     </div>
   `
 })
-export class AppComponent { }
+export class AppComponent {
+  constructor(languageService: LanguageService,
+              translateService: TranslateService) {
+    languageService.langChanged$.subscribe(lang => {
+          // translateService.resetLang(lang); uncomment if you want to call API everytime
+          translateService.use(lang);
+        }
+    )
+  }
+}
