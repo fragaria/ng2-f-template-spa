@@ -1,17 +1,16 @@
-/*************************************************************************
- *  Copyright © Komercni banka, a.s.
- *  All Rights Reserved.
- *
- * NOTICE:  All rights to the information contained herein is, and remains exclusive property of Komercni banka, a.s.
- * The intellectual and technical concepts and other essentials contained herein are proprietary to Komercni banka, a.s. and are covered and are protected by trade secret and/or copyright law.
- * Dissemination of this information or reproduction of this material is strictly forbidden, unless prior written permission is obtained from Komercni banka, a.s.
- */
+var gulp = require('gulp');
+var protractor = require('gulp-protractor').protractor;
+var path = require('path');
+var child_process = require('child_process');
 
-gulp = require('gulp');
-protractor = require('gulp-protractor').protractor;
-utils = require('gulp-util');
+function getProtractorBinary(binaryName){
+    var winExt = /^win/.test(process.platform)? '.cmd' : '';
+    var pkgPath = require.resolve('protractor');
+    var protractorDir = path.resolve(path.join(path.dirname(pkgPath), '..', 'bin'));
+    return path.join(protractorDir, '/'+binaryName+winExt);
+}
 
-gulp.task('protractor', function () {
+gulp.task('protractor', ['webdriver-install'], function () {
   return gulp.src('some/nonexisting/file', {read: false})
   .pipe(protractor({
     configFile: 'config/protractor.conf.js',
@@ -24,4 +23,10 @@ gulp.task('protractor', function () {
     console.log(e);
     process.exit(1);
   });
+});
+
+gulp.task('webdriver-install', function(done){
+    child_process.spawn(getProtractorBinary('webdriver-manager'), ['update'], {
+        stdio: 'inherit'
+    }).once('close', done);
 });

@@ -16,8 +16,6 @@ exports.config = {
 
   framework: 'jasmine2',
 
-  chromeDriver: '../tests/e2e/selenium/chromedriver',
-
   allScriptsTimeout: 110000,
 
   jasmineNodeOpts: {

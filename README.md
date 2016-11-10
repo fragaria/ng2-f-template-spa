@@ -14,6 +14,7 @@
 ### Tasky (build a běh aplikace)
 - `npm start` - spuštění aplikace v DEV režimu
 - `npm test` - spuštění testů a coverage analýzy
+- `npm run e2e` - spuštění e2e testů
 - `npm run build:prod` - pro přípravu souborů pro produkční nasazení
 - `npm run docs`
 
