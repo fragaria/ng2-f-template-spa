@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ErrorHandler } from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 import { Config } from '../config';
 
@@ -23,17 +23,11 @@ export const LOGGER_PROVIDERS: any[] = [
     useFactory: (config: Config) => {
       console.log("From LOG PROVIDER", config.getVal('loggingLevel'));
       return {
-        cansoleCatch: config.getVal('loggingAllowConsoleCatch') || true,
-        level: config.getVal('loggingLevel') || Level.LOG
+        allowConsoleCatch: config.getVal('loggingAllowConsoleCatch') === undefined ? true : config.getVal('loggingAllowConsoleCatch'),
+        level: config.getVal('loggingLevel') === undefined ? Level.LOG : config.getVal('loggingLevel')
       };
     },
     deps: [ Config ]
   },
   Logger
 ];
-export const OFF_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { allowConsoleCatch: false, level: Level.OFF } }, Logger ];
-export const ERROR_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.ERROR } }, Logger ];
-export const WARN_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.WARN } }, Logger ];
-export const INFO_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.INFO } }, Logger ];
-export const DEBUG_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.DEBUG } }, Logger ];
-export const LOG_LOGGER_PROVIDERS: any[] = [ { provide: Options, useValue: { level: Level.LOG } }, Logger ];

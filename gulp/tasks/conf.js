@@ -4,8 +4,8 @@ var gulp = require('gulp');
 var path = require('path');
 
 gulp.task('init-conf', function() {
-  var inputFile = 'src/assets/configs/devel.json';
-  var outputFile = 'src/assets/configs/env.json';
+  var inputFile = 'src/assets/configs/devel.js';
+  var outputFile = 'src/assets/configs/env.js';
 
   if (fileExists(inputFile)) {
     if (!fileExists(outputFile)) {

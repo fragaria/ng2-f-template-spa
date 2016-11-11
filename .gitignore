@@ -13,6 +13,6 @@
 /typings/
 
 /src/*.js
-/src/assets/configs/env.json
+/src/assets/configs/env.js
 *.js.map
 .npmrc

@@ -6,7 +6,7 @@ import { MockApiModule } from 'ng2-f-mock-api';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { Config, CONFIG_PROVIDERS } from './config';
+import { Config } from './config';
 import { ItemModule } from './item';
 import { SharedModule } from './shared';
 import {
@@ -28,7 +28,7 @@ import {
   exports: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
-    CONFIG_PROVIDERS,
+    Config,
     LOGGER_PROVIDERS,
     LOGGING_ERROR_HANDLER_PROVIDERS
   ]

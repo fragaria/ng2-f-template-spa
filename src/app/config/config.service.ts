@@ -1,33 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class Config {
 
+  private configName: string = "app-config";
   private config: Object = {};
-  private envConfFile: string = 'assets/configs/env.json';
 
-  constructor(private http: Http) { }
+  constructor() {
+    this.load();
+  }
 
   public getVal(key: string) {
     return this.config[key];
   }
 
   public load() {
-    return new Promise((resolve, reject) => {
-      this.http.get(this.envConfFile)
-          .map(res => res.json())
-          .catch((error: any) => {
-            console.error(error);
-            resolve(error);
-            return Observable.throw(error.json().error || 'Server error');
-          })
-          .subscribe((data) => {
-            this.updateConf(data);
-            resolve(true);
-          })
-    });
+    // load data from window object
+    if (!window[this.configName]) {
+      throw Error("No config for app");
+    }
+    this.updateConf(window[this.configName]);
   }
 
   public updateConf(updater: Object) {
