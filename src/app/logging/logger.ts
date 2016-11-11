@@ -10,7 +10,7 @@ import { Level } from "./level";
 let consoleCatched: boolean = false;
 
 export function catchConsole(logger: Logger) {
-  if (!consoleCatched) {
+  if (!consoleCatched && logger.level != Level.OFF) {
     consoleCatched = true;
 
     var oldLogFunctions = {
@@ -107,6 +107,8 @@ export class Logger {
         this._level = level;
         this._globalAs = globalAs;
         this._storeAs = storeAs;
+
+        this.catchConsole();
 
         global && this.global();
 
