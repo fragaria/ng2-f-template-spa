@@ -7,9 +7,10 @@
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
 - Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/`
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
+- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu
+- Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
-- Spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů
 
 ### Tasky (build a běh aplikace)
 - `npm start` - spuštění aplikace v DEV režimu
