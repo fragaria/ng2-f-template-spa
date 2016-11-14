@@ -1,5 +1,6 @@
 var fs = require('fs');
 var del = require('del');
+
 var gulp = require('gulp');
 var replace = require('gulp-replace');
 var pipe = require('gulp-pipe');
@@ -19,6 +20,8 @@ var forReplace = [
 var locations = {
   globalDirs: [ '.git' ],
   files: [ 'config/*.js', 'gulp/tasks/*.js', '!gulp/tasks/init.js', 'README.md', 'package.json' ],
+  // used for check if script was run in the past
+  fileForCheck: 'README.md'
 };
 
 function normalizeProjectName(name) {
@@ -59,7 +62,7 @@ function userInputsPostProcess(userInputs) {
   replaceTemplatePatternsInFiles(projectData);
 }
 
-gulp.task('init', function() {
+function prepareProject() {
   gulp.src(locations.files).pipe(prompt.prompt([{
     type: 'input',
     name: 'projectName',
@@ -70,4 +73,23 @@ gulp.task('init', function() {
     name: 'projectDescription',
     message: 'Get project description?'
   }], userInputsPostProcess));
+}
+
+gulp.task('init', function() {
+
+  fs.readFile(locations.fileForCheck, 'utf8', function(err, data) {
+    if (err) {
+      throw err;
+    }
+    else {
+      var i = data.search('SEED APP');
+      if (i == -1) {
+        console.log("Can not initialized project because of project was already initialized or important marks was removed");
+      }
+      else {
+        prepareProject();
+      }
+    }
+  });
+
 });
