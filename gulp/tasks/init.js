@@ -49,6 +49,10 @@ function replaceTemplatePatternsInFiles(projectData) {
   return pipe(gulp.src(locations.files), pipeArray);
 }
 
+function removeGlobalDirs() {
+  return del(locations.globalDirs)
+}
+
 function userInputsPostProcess(userInputs) {
   var projectName = userInputs.projectName ? userInputs.projectName : 'ng2 awesome project';
   var projectData = { projectName: projectName, projectDescription: userInputs.projectDescription };
@@ -58,7 +62,8 @@ function userInputsPostProcess(userInputs) {
   projectData['normalizedProjectNameWithTail'] = normalizeProjectName(projectName) + '-frontend';
   projectData['projectNameLowerUpperCase'] = projectNameLowerUpperCase(normalizeProjectName(projectName));
 
-  // removeGlobalDirs();
+  if (userInputs.removeGlobals && !(userInputs.removeGlobals in {'n': 0, 'no': 0})) removeGlobalDirs();
+
   replaceTemplatePatternsInFiles(projectData);
 }
 
@@ -72,6 +77,11 @@ function prepareProject() {
     type: 'input',
     name: 'projectDescription',
     message: 'Get project description?'
+  },
+  {
+    type: 'input',
+    name: 'removeGlobals',
+    message: 'Do you want to remove directory ".git"?'
   }], userInputsPostProcess));
 }
 
