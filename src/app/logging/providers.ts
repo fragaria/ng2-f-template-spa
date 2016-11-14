@@ -21,7 +21,6 @@ export const LOGGER_PROVIDERS: any[] = [
   {
     provide: Options,
     useFactory: (config: Config) => {
-      console.log("From LOG PROVIDER", config.getVal('loggingLevel'));
       return {
         allowConsoleCatch: config.getVal('loggingAllowConsoleCatch') === undefined ? true : config.getVal('loggingAllowConsoleCatch'),
         level: config.getVal('loggingLevel') === undefined ? Level.LOG : config.getVal('loggingLevel')

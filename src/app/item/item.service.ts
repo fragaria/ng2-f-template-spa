@@ -15,7 +15,6 @@ export class ItemService {
   constructor (private config: Config, protected http: HttpBaseService<Item>) {
     // get url from config service
     this.url = config.getVal('itemsApiUrl');
-    console.log("From Item service constructor", this.url);
   }
 
   getItems (): Observable<Item[]> {
