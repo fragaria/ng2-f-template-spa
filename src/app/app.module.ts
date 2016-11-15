@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { Config } from './config';
 import { ItemModule } from './item';
-import { LanguageModule, TestService } from './language';
+import { LanguageModule } from './language';
 import { SharedModule } from './shared';
 import {
   Logger,

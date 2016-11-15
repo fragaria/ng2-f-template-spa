@@ -11,7 +11,7 @@ export class HttpBaseService<T> {
   protected params = new URLSearchParams();
   protected model = null;
 
-  constructor (protected http: Http) { }
+  constructor (public http: Http) { }
 
   addObject (
     obj: T,

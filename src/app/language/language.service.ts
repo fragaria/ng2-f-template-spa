@@ -32,10 +32,3 @@ export class LanguageService {
         return userLang;
     }
 }
-
-@Injectable()
-export class TestService {
-    constructor(num:number){
-        console.log('test service',num);;
-    }
-}

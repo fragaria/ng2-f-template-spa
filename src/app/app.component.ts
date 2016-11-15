@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import './rxjs-operators';
+import { LanguageModule, LanguageService, createTranslateProviders } from './language';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { LanguageService } from './language';
 
 @Component({
   selector: 'seed-app',
@@ -21,15 +21,16 @@ import { LanguageService } from './language';
       </nav>
       <router-outlet></router-outlet>
     </div>
-  `
+  `,
+    providers:[ createTranslateProviders('app')]
 })
 export class AppComponent {
-  constructor(languageService: LanguageService,
-              translateService: TranslateService) {
-    languageService.langChanged$.subscribe(lang => {
-          // translateService.resetLang(lang); uncomment if you want to call API everytime
-          translateService.use(lang);
-        }
-    )
-  }
+    constructor(languageService: LanguageService,
+                translateService: TranslateService) {
+        languageService.langChanged$.subscribe(lang => {
+                // translateService.resetLang(lang); uncomment if you want to call API everytime
+                translateService.use(lang);
+            }
+        )
+    }
 }
