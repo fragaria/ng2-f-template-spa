@@ -10,7 +10,7 @@ function getProtractorBinary(binaryName){
     return path.join(protractorDir, '/'+binaryName+winExt);
 }
 
-gulp.task('protractor', ['webdriver-install'], function () {
+gulp.task('protractor', ['webdriver-install', 'init-conf'], function () {
   return gulp.src('some/nonexisting/file', {read: false})
   .pipe(protractor({
     configFile: 'config/protractor.conf.js',
@@ -21,7 +21,6 @@ gulp.task('protractor', ['webdriver-install'], function () {
   })
   .on('error', function (e) {
     console.log(e);
-    process.exit(1);
   });
 });
 
