@@ -94,7 +94,7 @@ gulp.task('init', function() {
     else {
       var i = data.search('SEED APP');
       if (i == -1) {
-        console.log("Can not initialized project because of project was already initialized or important marks was removed");
+        console.log("Can't initialize project because of project was already initialized or important marks was removed");
       }
       else {
         prepareProject();
