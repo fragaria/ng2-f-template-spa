@@ -6,13 +6,14 @@ import { MockApiModule } from 'ng2-f-mock-api';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { Config } from './config';
 import { ItemModule } from './item';
 import { LanguageModule, TestService } from './language';
 import { SharedModule } from './shared';
 import {
   Logger,
-  LOG_LOGGER_PROVIDERS,
-  LOGGING_ERROR_HANDLER_PROVIDERS } from './logging'
+  LOGGER_PROVIDERS,
+  LOGGING_ERROR_HANDLER_PROVIDERS } from './logging';
 
 @NgModule({
   imports: [
@@ -28,13 +29,12 @@ import {
   exports: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
-    LOG_LOGGER_PROVIDERS,
+    Config,
+    LOGGER_PROVIDERS,
     LOGGING_ERROR_HANDLER_PROVIDERS
   ]
 })
 export class AppModule {
-
   constructor(private logger: Logger) {
-    logger.catchConsole();
   }
 }
