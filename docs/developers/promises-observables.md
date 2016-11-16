@@ -22,4 +22,4 @@
 import { Observable } from 'rxjs/Observable'
 ```
 
-[zpět](../../)
+[zpět](../../README.md)
