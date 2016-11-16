@@ -15,8 +15,8 @@ export class CustomTranslateLoader implements TranslateLoader {
                 protected config: Config,
                 protected module: string
                 ) {
-        let prefix = this.config.getVal("language.prefix");
-        let suffix = this.config.getVal("language.suffix");
+        let prefix = this.config.getVal("language.prefix") || '/assets/i18n' ;
+        let suffix = this.config.getVal("language.suffix") || '.json';
         this.fallbackStaticLoader = new TranslateStaticLoader(httpService.http, prefix, suffix);
     }
 
