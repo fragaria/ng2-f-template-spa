@@ -46,3 +46,7 @@
 ### Moduly, které projekt obsahuje
 
 - [config](docs/config.md)
+
+### Poznámky pro vývojáře
+
+- [Promises vs Observables](docs/developers/promises-observables.md)
