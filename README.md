@@ -46,6 +46,7 @@
 ### Moduly, které projekt obsahuje
 
 - [config](docs/config.md)
+- [logging](docs/logging.md)
 
 ### Poznámky pro vývojáře
 
