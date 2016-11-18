@@ -140,7 +140,7 @@
     "bootstrap": "4.0.0-alpha.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
-    "ng2-f-mock-api": "^0.x",
+    "ng2-f-mock-api": "~0.0.8",
     "gulp-jenkins": "ondrejchmelar/gulp-jenkins.git#v0.2.0",
     "ng2-translate": "~2.4.4",
     "rxjs": "5.0.0-beta.12",

@@ -22,7 +22,7 @@ import {
     SharedModule,
     ItemModule,
     HttpModule,
-    MockApiModule
+    MockApiModule.forRoot()
   ],
   declarations: [AppComponent],
   exports: [AppComponent],
