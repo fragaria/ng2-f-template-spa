@@ -63,20 +63,14 @@ export function catchConsole(logger: Logger) {
 export class Options {
   allowConsoleCatch: boolean;
   level: Level;
-  global: boolean;
-  globalAs: string;
-  store: boolean;
-  storeAs: string;
+  onlyMsgInConsole: boolean;
 }
 
 // Temporal until https://github.com/angular/angular/issues/7344 gets fixed.
 const DEFAULT_OPTIONS: Options = {
   allowConsoleCatch: true,
   level: Level.LOG,
-  global: true,
-  globalAs: "logger",
-  store: false,
-  storeAs: "angular2.logger.level"
+  onlyMsgInConsole: false
 };
 
 @Injectable()
@@ -84,11 +78,7 @@ export class Logger {
 
     private _allowConsoleCatch: boolean;
     private _level: Level;
-    private _globalAs: string;
-    private _store: boolean;
-    private _storeAs: string;
-
-    public Level: any = Level;
+    private _onlyMsgInConsole: boolean;
 
     public consoleMethods = {
       'log': console.log,
@@ -101,24 +91,15 @@ export class Logger {
     constructor( @Optional() options?: Options ) {
 
         // Move this to the constructor definition when optional parameters are working with @Injectable: https://github.com/angular/angular/issues/7344
-        let { allowConsoleCatch, level, global, globalAs, store, storeAs } = Object.assign( {}, DEFAULT_OPTIONS, options );
+        let { allowConsoleCatch, level, onlyMsgInConsole } = Object.assign( {}, DEFAULT_OPTIONS, options );
 
         this._allowConsoleCatch = allowConsoleCatch;
-        this._level = level;
-        this._globalAs = globalAs;
-        this._storeAs = storeAs;
+        this._level = level in Level && level || DEFAULT_OPTIONS.level;
+        this._onlyMsgInConsole = onlyMsgInConsole;
 
         this.catchConsole();
 
-        global && this.global();
-
-        if ( store || this._loadLevel() ) this.store();
-
     }
-
-    private _loadLevel = (): Level => Level[localStorage.getItem( this._storeAs ) as string];
-
-    private _storeLevel(level: Level) { localStorage[ this._storeAs ] = level; }
 
     error(message: any, extraData?: Object, userData?: Object) {
         this.isErrorEnabled() && this.sendMessage('error', message, extraData, userData);
@@ -146,12 +127,16 @@ export class Logger {
       let dateStr: string = nowDate.toISOString();
       let targetExtraData:any = this.updateObject(this.getExtraData(), extraData);
       let targetUserData: any = this.updateObject(this.getUserData(), userData);
-      let params: any = [`LOGGER ${dateStr}: `, message, targetExtraData, targetUserData]
+      let params: any = [`LOGGER ${dateStr}: `, message, targetExtraData, targetUserData];
+      // Send to remote here
 
-      this.consoleMethods[levelStr](...params);
+      // for console send only message for better readability if option is true
+      let consoleParams = this._onlyMsgInConsole ? params.slice(0, 2) : params;
+      this.consoleMethods[levelStr](...consoleParams);
     }
 
     getExtraData(): any {
+      // return extra data for logging
       return {}
     }
 
@@ -172,25 +157,6 @@ export class Logger {
       return baseObj
     }
 
-    global = () => ( <any> window )[this._globalAs] = this;
-
-    store(): Logger {
-
-        this._store = true;
-        let storedLevel = this._loadLevel();
-        if ( storedLevel ) { this._level = storedLevel; }
-        else { this._storeLevel( this.level ); }
-
-        return this;
-
-    }
-
-    unstore(): Logger {
-        this._store = false;
-        localStorage.removeItem( this._storeAs );
-        return this;
-    }
-
     isEnabled = (): boolean => this.level != Level.OFF;
     isErrorEnabled = (): boolean => this.level >= Level.ERROR;
     isWarnEnabled = (): boolean => this.level >= Level.WARN;
@@ -201,7 +167,6 @@ export class Logger {
     get level(): Level { return this._level; }
 
     set level(level: Level) {
-        this._store && this._storeLevel(level);
         this._level = level;
     }
 
