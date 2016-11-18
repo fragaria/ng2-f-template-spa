@@ -7,59 +7,6 @@ import { Injectable, Optional } from "@angular/core";
 
 import { Level } from "./level";
 
-let consoleCatched: boolean = false;
-
-export function catchConsole(logger: Logger) {
-  if (!consoleCatched && logger.level != Level.OFF) {
-    consoleCatched = true;
-
-    var oldLogFunctions = {
-      'log': null,
-      'debug': null,
-      'info': null,
-      'warn': null,
-      'error': null
-    }
-
-    /* IE9 no console hack */
-
-    if (typeof console === 'undefined') {
-      (window as any).console = {
-        log: function(){},
-        debug: function(){},
-        info: function(){},
-        warn: function(){},
-        error: function(){}
-      };
-    }
-
-    for (let methodName in oldLogFunctions) {
-      if (console && console[methodName]) {
-        oldLogFunctions[methodName] = console[methodName];
-        console[methodName] = function () {
-
-          //modern browsers
-          if (oldLogFunctions[methodName].apply) {
-            logger.consoleMethods[methodName] = function() { oldLogFunctions[methodName].apply(console, arguments) };
-          }
-          //ie9
-          else {
-            logger.consoleMethods[methodName] = Function.prototype.bind.call(oldLogFunctions[methodName], console);
-          }
-
-          // for more than one arg in arguments wrrap to Array
-          // this is becouse of we want to have fixed logger api
-          let newArguments = arguments.length > 1 ? [arguments] : arguments;
-          // send message to your logger.
-          logger[methodName].apply(logger, newArguments);
-
-        };
-      }
-    }
-  }
-
-}
-
 export class Options {
   allowConsoleCatch: boolean;
   level: Level;
@@ -173,4 +120,62 @@ export class Logger {
     catchConsole() {
       if (this._allowConsoleCatch) catchConsole(this);
     }
+}
+
+/**
+ * Console catching
+ */
+
+// used for check if console is already catched
+let consoleCatched: boolean = false;
+
+export function catchConsole(logger: Logger) {
+  if (!consoleCatched && logger.level != Level.OFF) {
+    consoleCatched = true;
+
+    var oldLogFunctions = {
+      'log': null,
+      'debug': null,
+      'info': null,
+      'warn': null,
+      'error': null
+    }
+
+    /* IE9 no console hack */
+
+    if (typeof console === 'undefined') {
+      (window as any).console = {
+        log: function(){},
+        debug: function(){},
+        info: function(){},
+        warn: function(){},
+        error: function(){}
+      };
+    }
+
+    for (let methodName in oldLogFunctions) {
+      if (console && console[methodName]) {
+        oldLogFunctions[methodName] = console[methodName];
+        console[methodName] = function () {
+
+          //modern browsers
+          if (oldLogFunctions[methodName].apply) {
+            logger.consoleMethods[methodName] = function() { oldLogFunctions[methodName].apply(console, arguments) };
+          }
+          //ie9
+          else {
+            logger.consoleMethods[methodName] = Function.prototype.bind.call(oldLogFunctions[methodName], console);
+          }
+
+          // for more than one arg in arguments wrrap to Array
+          // this is becouse of we want to have fixed logger api
+          let newArguments = arguments.length > 1 ? [arguments] : arguments;
+          // send message to your logger.
+          logger[methodName].apply(logger, newArguments);
+
+        };
+      }
+    }
+  }
+
 }
