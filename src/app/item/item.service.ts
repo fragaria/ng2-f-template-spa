@@ -17,12 +17,12 @@ export class ItemService {
   }
 
   getItems (): Observable<Item[]> {
-    return this.http.getObjects(this.url, this.model)
+    return this.http.getObjects(this.url, {'model': this.model})
   }
 
   getItem (id: number | string): Observable<Item> {
     const url = `${this.url}/${id}`;
-    return this.http.getObject(url, this.model)
+    return this.http.getObject(url, {'model': this.model})
   }
 
 }

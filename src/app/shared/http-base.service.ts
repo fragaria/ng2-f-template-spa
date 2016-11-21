@@ -7,6 +7,26 @@ import { HttpError } from './errors';
 
 import { Observable } from 'rxjs/Observable';
 
+export interface BaseExtraOptions<T> {
+  model?: any,
+  errorCallback?: (error: Response | any) => Observable<HttpError>,
+  headers?: Headers,
+  params?: URLSearchParams
+}
+/**
+ * extra options type for method that work with single object
+ */
+export interface ObjectExtraOptions<T> extends BaseExtraOptions<T> {
+  successCallback?: (res: Response) => T
+}
+
+/**
+ * extra options type for method that work with multiple objects
+ */
+export interface ObjectsExtraOptions<T> extends BaseExtraOptions<T> {
+  successCallback?: (res: Response) => T[]
+}
+
 @Injectable()
 export class HttpBaseService<T> {
   protected headers = new Headers({'Accept': 'application/json'});
@@ -16,57 +36,41 @@ export class HttpBaseService<T> {
   constructor (protected http: Http, protected logger: Logger) { }
 
   addObject (
-    obj: T,
     url: string,
-    model?: any,
-    successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Observable<HttpError>,
-    headers?: Headers,
-    params?: URLSearchParams): Observable<T | HttpError> {
+    obj: T,
+    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
 
-    return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(headers, params))
-                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
-                    .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
+    return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
+                    .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
+                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
   }
 
   getObjects (
     url: string,
-    model?: any,
-    successCallback?: (res: Response) => T[],
-    errorCallback?: (error: Response | any) => Observable<HttpError>,
-    headers?: Headers,
-    params?: URLSearchParams): Observable<T[] | HttpError> {
+    options: ObjectsExtraOptions<T>): Observable<T[] | HttpError> {
 
-    return this.http.get(url, this.getRequestOptions(headers, params))
-                    .map(response => successCallback ? successCallback(response) : extractDataToObjects<T>(response, model))
-                    .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
+    return this.http.get(url, this.getRequestOptions(options.headers, options.params))
+                    .map(response => options.successCallback ? options.successCallback(response) : extractDataToObjects<T>(response, options.model))
+                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
   }
 
   getObject (
     url: string,
-    model?: any,
-    successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Observable<HttpError>,
-    headers?: Headers,
-    params?: URLSearchParams): Observable<T | HttpError> {
+    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
 
-    return this.http.get(url, this.getRequestOptions(headers, params))
-                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
-                    .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
+    return this.http.get(url, this.getRequestOptions(options.headers, options.params))
+                    .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
+                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
   }
 
   updateObject (
-    obj: T,
     url: string,
-    model?: any,
-    successCallback?: (res: Response) => T,
-    errorCallback?: (error: Response | any) => Observable<HttpError>,
-    headers?: Headers,
-    params?: URLSearchParams): Observable<T | HttpError> {
+    obj: T,
+    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
 
-    return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(headers, params))
-                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
-                    .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
+    return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
+                    .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
+                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
   }
 
   protected getRequestOptions(headers?: Headers, params?: URLSearchParams): any {
