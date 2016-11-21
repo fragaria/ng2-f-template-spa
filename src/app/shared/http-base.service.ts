@@ -38,7 +38,9 @@ export class HttpBaseService<T> {
   addObject (
     url: string,
     obj: T,
-    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
+    options?: ObjectExtraOptions<T>): Observable<T | HttpError> {
+
+    options = options || {};
 
     return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
                     .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
@@ -47,7 +49,9 @@ export class HttpBaseService<T> {
 
   getObjects (
     url: string,
-    options: ObjectsExtraOptions<T>): Observable<T[] | HttpError> {
+    options?: ObjectsExtraOptions<T>): Observable<T[] | HttpError> {
+
+    options = options || {};
 
     return this.http.get(url, this.getRequestOptions(options.headers, options.params))
                     .map(response => options.successCallback ? options.successCallback(response) : extractDataToObjects<T>(response, options.model))
@@ -56,7 +60,9 @@ export class HttpBaseService<T> {
 
   getObject (
     url: string,
-    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
+    options?: ObjectExtraOptions<T>): Observable<T | HttpError> {
+
+    options = options || {};
 
     return this.http.get(url, this.getRequestOptions(options.headers, options.params))
                     .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
@@ -66,9 +72,22 @@ export class HttpBaseService<T> {
   updateObject (
     url: string,
     obj: T,
-    options: ObjectExtraOptions<T>): Observable<T | HttpError> {
+    options?: ObjectExtraOptions<T>): Observable<T | HttpError> {
+
+    options = options || {};
 
     return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
+                    .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
+                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+  }
+
+  deleteObject (
+    url: string,
+    options?: ObjectExtraOptions<T>): Observable<T | HttpError> {
+
+    options = options || {};
+
+    return this.http.delete(url, this.getRequestOptions(options.headers, options.params))
                     .map(response => options.successCallback ? options.successCallback(response) : extractDataToObj<T>(response, options.model))
                     .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
   }
@@ -103,7 +122,7 @@ export class HttpBaseService<T> {
 
 export function extractData(res: Response): any {
   let body = res.json();
-  return body.data;
+  return body && body.data || {};
 }
 
 export function extractDataToObj<T>(res: Response, model: any): T | null {
