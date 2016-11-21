@@ -24,12 +24,8 @@ export class HttpBaseService<T> {
     headers?: Headers,
     params?: URLSearchParams): Observable<T | HttpError> {
 
-    this.model = model || null;
-    const targetHeaders = headers || this.headers;
-    const targetParams = params || this.params;
-
-    return this.http.post(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
-                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+    return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(headers, params))
+                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
                     .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
   }
 
@@ -41,12 +37,8 @@ export class HttpBaseService<T> {
     headers?: Headers,
     params?: URLSearchParams): Observable<T[] | HttpError> {
 
-    this.model = model || null;
-    const targetHeaders = headers || this.headers;
-    const targetParams = params || this.params;
-
-    return this.http.get(url, {headers: targetHeaders, search: targetParams})
-                    .map(response => successCallback ? successCallback(response) : this.extractDataToObjects(response))
+    return this.http.get(url, this.getRequestOptions(headers, params))
+                    .map(response => successCallback ? successCallback(response) : extractDataToObjects<T>(response, model))
                     .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
   }
 
@@ -58,12 +50,8 @@ export class HttpBaseService<T> {
     headers?: Headers,
     params?: URLSearchParams): Observable<T | HttpError> {
 
-    this.model = model || null;
-    const targetHeaders = headers || this.headers;
-    const targetParams = params || this.params;
-
-    return this.http.get(url, {headers: targetHeaders, search: targetParams})
-                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+    return this.http.get(url, this.getRequestOptions(headers, params))
+                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
                     .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
   }
 
@@ -76,38 +64,15 @@ export class HttpBaseService<T> {
     headers?: Headers,
     params?: URLSearchParams): Observable<T | HttpError> {
 
-    this.model = model || null;
-    const targetHeaders = headers || this.headers;
-    const targetParams = params || this.params;
-
-    return this.http.put(url, JSON.stringify(obj), {headers: targetHeaders, search: targetParams})
-                    .map(response => successCallback ? successCallback(response) : this.extractDataToObj(response))
+    return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(headers, params))
+                    .map(response => successCallback ? successCallback(response) : extractDataToObj<T>(response, model))
                     .catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
   }
 
-  protected extractData(res: Response): any {
-    let body = res.json();
-    return body.data;
-  }
-
-  protected extractDataToObj(res: Response): T | null {
-    let obj = this.extractData(res) as T || null;
-    if (obj) obj = this.toParticularType(obj);
-    return obj
-  }
-
-  protected extractDataToObjects(res: Response): T[] {
-    let objects = this.extractData(res) as T[] || <T[]>[];
-    if (objects.length != 0) objects = objects.map((obj) => this.toParticularType(obj));
-    return objects
-  }
-
-  protected toParticularType(obj: any): T {
-    // if model is specified and has constructFromObj method call it
-    if (this.model && typeof this.model.constructFromObj !== 'undefined') {
-      return this.model.constructFromObj(obj)
-    }
-    return obj
+  protected getRequestOptions(headers?: Headers, params?: URLSearchParams): any {
+    const targetHeaders = headers || this.headers;
+    const targetParams = params || this.params;
+    return { headers: targetHeaders, search: targetParams }
   }
 
   protected handleError (error: Response | any): Observable<HttpError> {
@@ -126,4 +91,33 @@ export class HttpBaseService<T> {
     this.logger.error(errMsg, { 'status': error.status, 'stack': error.stack});
     return Observable.throw(errorObj);
   }
+}
+
+/*
+ * Help functions are out of HttpBaseService for simple usage in customization
+ */
+
+export function extractData(res: Response): any {
+  let body = res.json();
+  return body.data;
+}
+
+export function extractDataToObj<T>(res: Response, model: any): T | null {
+  let obj = extractData(res) as T || null;
+  if (obj) obj = toParticularType<T>(obj, model);
+  return obj
+}
+
+export function extractDataToObjects<T>(res: Response, model: any): T[] {
+  let objects = extractData(res) as T[] || <T[]>[];
+  if (objects.length != 0) objects = objects.map((obj) => toParticularType<T>(obj, model));
+  return objects
+}
+
+export function toParticularType<T>(obj: any, model: any): T {
+  // if model is specified and has constructFromObj method call it
+  if (model && typeof model.constructFromObj !== 'undefined') {
+    return model.constructFromObj(obj)
+  }
+  return obj
 }
