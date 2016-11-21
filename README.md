@@ -47,6 +47,7 @@
 
 - [config](docs/config.md)
 - [logging](docs/logging.md)
+- [mock api](docs/mock-api.md)
 
 ### Poznámky pro vývojáře
 
