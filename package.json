@@ -38,7 +38,6 @@
     "prebuild:prod": "npm run clean:dist",
     "build:prod": "webpack -p --config config/webpack.prod.js --progress --profile --colors --display-error-details --display-cached --bail",
     "e2e": "npm-run-all -p -r start protractor",
-    "e2e:live": "npm-run-all -p -r start \"e2e -- --elementExplorer\"",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint src/app/{,**/}*.ts",
     "lint:sass": "sass-lint",
