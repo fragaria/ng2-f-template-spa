@@ -18,7 +18,7 @@ module.exports = function (config) {
      *
      * we are building the test environment in ./spec-bundle.ts
      */
-    files: ['./config/spec-bundle.ts'],
+    files: ['./src/assets/configs/test.js', './config/spec-bundle.ts'],
 
     /*
      * preprocess matching files before serving them to the browser

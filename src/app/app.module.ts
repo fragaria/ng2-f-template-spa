@@ -24,6 +24,7 @@ import {
     HttpModule,
     MockApiModule,
     LanguageModule,
+    MockApiModule.forRoot()
   ],
   declarations: [AppComponent],
   exports: [AppComponent],

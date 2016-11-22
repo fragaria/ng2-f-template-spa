@@ -42,3 +42,13 @@
 - `typings/` - typescript definice
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
+
+### Moduly, které projekt obsahuje
+
+- [config](docs/config.md)
+- [logging](docs/logging.md)
+- [mock api](docs/mock-api.md)
+
+### Poznámky pro vývojáře
+
+- [Promises vs Observables](docs/developers/promises-observables.md)
