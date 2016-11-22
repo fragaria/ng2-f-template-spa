@@ -14,6 +14,7 @@
     "bump": "gulp bump",
     "sonar": "gulp sonar",
     "jenkins": "gulp jenkins",
+    "preprotractor": "webdriver-manager update",
     "protractor": "gulp protractor",
     "rimraf": "rimraf",
     "tslint": "tslint",
