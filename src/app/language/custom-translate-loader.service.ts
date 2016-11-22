@@ -1,11 +1,10 @@
 import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler } from "ng2-translate/ng2-translate";
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs-operators';
 import { HttpBaseService } from '../shared/http-base.service';
-import { Config }  from '../config';
+import { Config } from '../config';
+import { Logger } from '../logging';
 
-declare interface LangModel {lang: string; route:string; data:string;
+interface LangModel {lang: string; route:string; data:string;
 }
 
 export class CustomTranslateLoader implements TranslateLoader {
@@ -15,12 +14,13 @@ export class CustomTranslateLoader implements TranslateLoader {
                 protected config: Config,
                 protected module: string
                 ) {
-        let prefix = this.config.getVal("language.prefix") || '/assets/i18n' ;
+        let prefix = `${this.config.getVal("language.prefix") || '/assets/i18n'}/${module}`;
         let suffix = this.config.getVal("language.suffix") || '.json';
         this.fallbackStaticLoader = new TranslateStaticLoader(httpService.http, prefix, suffix);
     }
 
     getTranslation(lang: string): Observable<any> {
+        //TODO: resources url is defined by MockApiModule
         let urlResources = this.config.getVal("language.resources") || "i18n/resources?lang=${lang}&module=${module}";
         urlResources = urlResources.replace("${lang}",lang);
         urlResources = urlResources.replace("${module}",this.module);
@@ -34,8 +34,10 @@ export class CustomTranslateLoader implements TranslateLoader {
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
+    constructor(private logger:Logger){}
+
     handle(params: string) {
-        // console.error(`### MyMissingTranslationHandler. ${params}`);
+        // this.logger.warn(`MyMissingTranslationHandler. ${params}`);
         return `{{${params}}}`;
     }
 }

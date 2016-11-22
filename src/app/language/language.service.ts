@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Config } from '../config'
 
 
 @Injectable()
 export class LanguageService {
-    private APP_NAME = 'fast';
+    private appName;
 
     // Observable string sources
     private activeLang = new BehaviorSubject<string>('cs');
@@ -12,18 +13,19 @@ export class LanguageService {
     // Observable string streams
     langChanged$ = this.activeLang.asObservable();
 
-    constructor(){
+    constructor(config:Config){
+        this.appName = config.getVal('appName') || 'fast';
         this.setUserLang(this.getUserLang());
     }
 
     setUserLang = (lang:string):void => {
-        let KEY_NAME = `${this.APP_NAME}.user.lang`;
+        const KEY_NAME = `${this.appName}.LanguageService.lang`;
         localStorage.setItem(KEY_NAME, lang);
         this.activeLang.next(lang);
     }
 
     getUserLang = ():string => {
-        let KEY_NAME = `${this.APP_NAME}.user.lang`;
+        const KEY_NAME = `${this.appName}.LanguageService.lang`;
         let userLang = localStorage.getItem(KEY_NAME);
         if (!userLang) {
             userLang = (window.navigator.language || window.navigator['browserLanguage']).split('-')[0]; // use navigator lang if available

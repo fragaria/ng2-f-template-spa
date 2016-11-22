@@ -6,7 +6,6 @@ import { LangToggleComponent } from "./lang-toggle.component";
 import { LanguageService } from './language.service';
 import { NumberAsyncPipe } from './number-async.pipe';
 import { DateAsyncPipe } from './date-async.pipe';
-import { LOCALE_ID_PROVIDER } from './providers';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { LOCALE_ID_PROVIDER } from './providers';
     ],
     providers: [
         LanguageService,
-        LOCALE_ID_PROVIDER,
     ]
 })
 export class LanguageModule {}

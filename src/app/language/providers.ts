@@ -1,17 +1,11 @@
-import { ModuleWithProviders, FactoryProvider, ValueProvider, LOCALE_ID }     from '@angular/core';
-import { Http } from '@angular/http';
+import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 
 import { HttpBaseService } from '../shared/http-base.service';
 import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate/ng2-translate';
 import { CustomTranslateLoader, MyMissingTranslationHandler } from './custom-translate-loader.service';
 import { LanguageService } from './language.service';
 import { Config } from '../config';
-
-export const LOCALE_ID_PROVIDER: FactoryProvider = {
-    provide: LOCALE_ID,
-    deps: [LanguageService],      //some service handling global settings
-    useFactory: (languageService) => languageService.getUserLang() //returns locale string
-}
+import { Logger } from '../logging';
 
 export function createTranslateProviders(module: string): any[] {
     return [
@@ -21,7 +15,9 @@ export function createTranslateProviders(module: string): any[] {
             deps: [HttpBaseService, Config],
         },
         {
-            provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler
+            provide: MissingTranslationHandler,
+            useFactory: (logger: Logger) => new MyMissingTranslationHandler(logger),
+            deps: [Logger],
         },
         {
             provide: TranslateService,

@@ -1,11 +1,5 @@
 ﻿{
   "app": {
     "title": "Ahoj, světe!"
-  },
-  "title": "Ahoj, světe!",
-  "bu0916.czech": "Česky",
-  "bu0917.english": "English",
-  "home.page":"Domovská stránka  {{ value }}",
-  "items": "Lokální Prvky"
-
+  }
 }
