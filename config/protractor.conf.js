@@ -2,7 +2,6 @@
  * @author: @AngularClass
  */
 
-require('ts-node/register');
 var helpers = require('./helpers');
 
 exports.config = {
@@ -33,10 +32,6 @@ exports.config = {
     'chromeOptions': {
       'args': ['show-fps-counter=true']
     }
-  },
-
-  onPrepare: function () {
-    browser.ignoreSynchronization = true;
   },
 
   /**

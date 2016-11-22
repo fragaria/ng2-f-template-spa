@@ -13,5 +13,6 @@
 /typings/
 
 /src/*.js
+/src/assets/configs/config.js
 *.js.map
 .npmrc

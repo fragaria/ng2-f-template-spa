@@ -1,4 +1,7 @@
-import { Component, ViewContainerRef  } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+
+import './rxjs-operators';
+
 @Component({
   selector: 'seed-app',
   template: `

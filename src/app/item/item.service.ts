@@ -1,30 +1,28 @@
 import { Injectable } from '@angular/core';
+
+import { HttpBaseService } from '../shared';
+import { Config } from '../config';
 import { Item } from './item.model';
 
-const ITEMS: Item[] = [
-  new Item(11, 'Boots'),
-  new Item(12, 'Gloves'),
-  new Item(13, 'Cap'),
-  new Item(14, 'Jacket')
-];
-
-const FETCH_LATENCY = 500;
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ItemService {
+  protected url: string;
+  protected model = Item;
 
-  getItems() {
-    return new Promise<Item[]>(resolve => {
-      setTimeout(() => {
-        resolve(ITEMS);
-      }, FETCH_LATENCY);
-    });
+  constructor (private config: Config, protected http: HttpBaseService<Item>) {
+    // get url from config service
+    this.url = config.getVal('itemsApiUrl');
   }
 
-  getItem(id: number | string) {
-    return this.getItems().then(items => 
-        items.find(item => item.id === +id)
-    );
+  getItems (): Observable<Item[]> {
+    return this.http.getObjects(this.url, this.model)
+  }
+
+  getItem (id: number | string): Observable<Item> {
+    const url = `${this.url}/${id}`;
+    return this.http.getObject(url, this.model)
   }
 
 }

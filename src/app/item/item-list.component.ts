@@ -3,12 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from './item.model';
 import { ItemService } from './item.service';
 
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'sa-item-list',
   templateUrl: 'item-list.component.html'
 })
 export class ItemListComponent implements OnInit {
-  items: Promise<Item[]>;
+  items: Observable<Item[]>;
 
   constructor(private itemService: ItemService,
               private route: ActivatedRoute,
