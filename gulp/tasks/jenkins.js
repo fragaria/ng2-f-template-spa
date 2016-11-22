@@ -18,18 +18,33 @@ var OPTIONS = {
 jenkins.init(OPTIONS);
 
 gulp.task('jenkins', function () {
-  var modifyConfig = function (config) {
-    // function which takes the config.xml, and returns
-    // the new config xml for the new job
+  var replaceAttributes = function (config) {
     return config.replace('--git endpoint--', GIT_ENDPOINT);
   };
 
-  var fileContent = fs.readFileSync("jenkins/frontend-master-build.xml", "utf8");
-  jenkins.create_job('frontend-master-build', modifyConfig(fileContent), function (error, data) {
+  // create jenkins folder
+  jenkins.create_folder(APP_FOLDER, function (error, data) {
     if (error) {
-      console.log(error + ':' + data);
+      console.log('ERROR: ' + error + ':' + data);
       return;
     }
     console.log(data);
+  });
+
+  var testFolder = 'jenkins/';
+  fs.readdir(testFolder, function (err, files) {
+    files.forEach(function (file) {
+      if (file.endsWith('.xml')) {
+        var jobName = file.substr(-4);
+        var fileContent = fs.readFileSync(file, "utf8");
+        jenkins.create_job(jobName, replaceAttributes(fileContent), function (error, data) {
+          if (error) {
+            console.log('ERROR: ' + error + ':' + data);
+            return;
+          }
+          console.log(data);
+        });
+      }
+    });
   });
 });
