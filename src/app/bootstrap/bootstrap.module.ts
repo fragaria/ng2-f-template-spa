@@ -20,6 +20,7 @@ import { bootstrapRouting } from './bootstrap.routing';
 import { AlertDemoComponent } from './alert-demo.component';
 import { ButtonsDemoComponent } from './buttons-demo.component';
 import { DemoCardComponent } from './demo-card.component';
+import { DeepLinkModalDemoComponent } from './deeplink-modal-demo.component';
 import { CollapseDemoComponent } from './collapse-demo.component';
 import { DatepickerDemoComponent } from './datepicker-demo.component';
 import { ModalDemoComponent } from './modal-demo.component';
@@ -51,6 +52,7 @@ import { DropdownDemoComponent } from './dropdown-demo.component';
         BootstrapComponent,
         ButtonsDemoComponent,
         DemoCardComponent,
+        DeepLinkModalDemoComponent,
         CollapseDemoComponent,
         DatepickerDemoComponent,
         DropdownDemoComponent,

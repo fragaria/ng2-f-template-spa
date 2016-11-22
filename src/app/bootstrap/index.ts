@@ -7,5 +7,6 @@ export * from './demo-card.component';
 export * from './dropdown-demo.component';
 export * from './modal-demo.component';
 export * from './pagination-demo.component';
+export * from './bootstrap.component';
 
 
