@@ -3,7 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 
 //presunuto z app.module z duvodu unit testu
-if ('production' === ENV) {
+if ('prod' === ENV) {
   // Production
   enableProdMode(); // enable angular production mode in production
 
