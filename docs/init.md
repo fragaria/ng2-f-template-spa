@@ -10,6 +10,7 @@ Spusťte `npm run init` z rootu projektu. Příkaz se vás zeptá na pár věcí
 
 - `jméno projektu` zadejte jméno projektu (např. ng2 clients). Jméno bude použito na různých místech, např. v `package.json`, `README`, `webpack` konfiguračních souborech atd.
 - `popis projektu` zadejte popis projektu, bude použit v `package.json` v políčku `description`
+- `url root pro produkci` zadejte url root, na kterém projekt poběží (ve tvaru `/xyz/`, např. /demo/), nezadáte-li nic pak bude použito `/`
 - `zda chcete smazat .git složku` stisknete-li `enter` nebo zadáte-li `n` nebo `no`, tak `.git` složka nebude smazána, jinak bude odstraněna (zadat nesmazání složky se hodí v podstatě jen pro případ, že se chcete podívat pomocí `git diff`, co vše příkaz nahradil, pak můžete složku smazat ručne)
 
 Potom se provede náhrada `seed` značek za vámi zadaná data (a případně se smaže `.git`), také vám bude v `package.json` nastavena verze projektu na `0.0.0-SNAPSHOT`.
