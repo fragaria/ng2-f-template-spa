@@ -25,6 +25,7 @@ Seed značky jsou nahrazeny za vámi zadaná data (popřípadě normalizované t
 - v souboru `src/app/app.component.ts` je nahrazen `selector` pro `AppComponent`
 - v souboru `config/karma.conf.js` je nahrazeno jméno `suite` pro testy postavené na [karma](https://karma-runner.github.io/1.0/index.html)
 - v souboru `config/webpack.common.js` je nahrazen titulek aplikace požívaný [webpackem](https://webpack.github.io/) pro [build](./build.md) projektu
+- v souboru `config/webpack.prod.js` je nahrazena `baseUrl` požívaná pro base html tag v souboru `src/index.html`
 - v souboru `gulp/task/bump.js` je nahrazen prefix pro commit message při zvedání verze
 - v souboru `gulp/tasks/sonar.js` je nahrazen `projectName` a `projectKey` pro [sonar](http://www.sonarqube.org/) analýzu
 - v souboru `gulp/tasks/maven-deploy.js` je nahrazen `artifactId` a `finalName` v konfiguraci pro buildy pomocí [maven](https://maven.apache.org/)
