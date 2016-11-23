@@ -14,7 +14,8 @@ var forReplace = [
   [ 'SEED APP', 'upperCasedProjectName' ],
   [ 'seed-app', 'normalizedProjectName' ],
   [ 'seedApp', 'projectNameLowerUpperCase' ],
-  [ 'SEED-APP-frontend', 'normalizedProjectNameWithTail' ]
+  [ 'SEED-APP-frontend', 'normalizedProjectNameWithTail' ],
+  [ 'baseUrl: \'/demo/\',', 'prodUrlRootRepl']
 ];
 
 var locations = {
@@ -64,11 +65,13 @@ function removeGlobalDirs() {
 function userInputsPostProcess(userInputs) {
   var projectName = userInputs.projectName ? userInputs.projectName : 'ng2 awesome project';
   var projectData = { projectName: projectName, projectDescription: userInputs.projectDescription };
+  var prodUrlRoot = userInputs.prodUrlRoot ? userInputs.prodUrlRoot : '/';
 
   projectData['normalizedProjectName'] = normalizeProjectName(projectName);
   projectData['upperCasedProjectName'] = projectName.toUpperCase();
   projectData['normalizedProjectNameWithTail'] = normalizeProjectName(projectName) + '-frontend';
   projectData['projectNameLowerUpperCase'] = projectNameLowerUpperCase(normalizeProjectName(projectName));
+  projectData['prodUrlRootRepl'] = 'baseUrl: \'' + prodUrlRoot + '\',';
 
   if (userInputs.removeGlobals && !(userInputs.removeGlobals in {'n': 0, 'no': 0})) removeGlobalDirs();
 
@@ -85,6 +88,11 @@ function prepareProject() {
     type: 'input',
     name: 'projectDescription',
     message: 'Get project description?'
+  },
+  {
+    type: 'input',
+    name: 'prodUrlRoot',
+    message: 'Get url root for production(in the form /xyz/)?'
   },
   {
     type: 'input',
