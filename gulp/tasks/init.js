@@ -19,7 +19,15 @@ var forReplace = [
 
 var locations = {
   globalDirs: [ '.git' ],
-  files: [ 'config/*.js', 'gulp/tasks/*.js', '!gulp/tasks/init.js', 'README.md', 'package.json' ],
+  files: [
+    'src/index.html',
+    'src/app/app.component.ts',
+    'config/*.js',
+    'gulp/tasks/*.js',
+    '!gulp/tasks/init.js',
+    'README.md',
+    'package.json'
+  ],
   // used for check if script was run in the past
   fileForCheck: 'README.md'
 };
