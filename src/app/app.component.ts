@@ -12,7 +12,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
         <a routerLink="" routerLinkActive="active" class="navbar-brand">HP</a>
         <ul class="nav navbar-nav">
           <li class="nav-item">
-            <a routerLink="items" routerLinkActive="active" class="nav-link">Items</a>
+            <a routerLink="items" routerLinkActive="active" class="nav-link">{{ 'items' | translate }}</a>
           </li>
           <li class="nav-item">
             <lang-toggle></lang-toggle>
