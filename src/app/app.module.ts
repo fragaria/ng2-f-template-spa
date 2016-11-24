@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { Config } from './config';
 import { ItemModule } from './item';
+import { LanguageModule } from './language';
 import { SharedModule } from './shared';
 import {
   Logger,
   LOGGER_PROVIDERS,
   LOGGING_ERROR_HANDLER_PROVIDERS } from './logging';
-
 
 @NgModule({
   imports: [
@@ -22,6 +22,7 @@ import {
     SharedModule,
     ItemModule,
     HttpModule,
+    LanguageModule,
     MockApiModule.forRoot()
   ],
   declarations: [AppComponent],

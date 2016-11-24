@@ -33,7 +33,7 @@ export class HttpBaseService<T> {
   protected params = new URLSearchParams();
   protected model = null;
 
-  constructor (protected http: Http, protected logger: Logger) { }
+  constructor (public http: Http, protected logger: Logger) { }
 
   addObject (
     url: string,
