@@ -38,12 +38,12 @@ export class CustomTranslateLoader implements TranslateLoader {
     }
 }
 
-export class MyMissingTranslationHandler implements MissingTranslationHandler {
+export class AppMissingTranslationHandler implements MissingTranslationHandler {
     constructor(private logger:Logger){}
 
     handle(params: string) {
-        this.logger.warn(`MyMissingTranslationHandler. ${params}`);
-        return ` `;
+        this.logger.warn(`AppMissingTranslationHandler. ${params}`);
+        return ``;
     }
 }
 

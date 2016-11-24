@@ -2,7 +2,7 @@ import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 
 import { HttpBaseService } from '../shared/http-base.service';
 import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate/ng2-translate';
-import { CustomTranslateLoader, MyMissingTranslationHandler } from './custom-translate-loader.service';
+import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
 import { LanguageService } from './language.service';
 import { Config } from '../config';
 import { Logger } from '../logging';
@@ -16,7 +16,7 @@ export function createTranslateProviders(module: string): any[] {
         },
         {
             provide: MissingTranslationHandler,
-            useFactory: (logger: Logger) => new MyMissingTranslationHandler(logger),
+            useFactory: (logger: Logger) => new AppMissingTranslationHandler(logger),
             deps: [Logger],
         },
         {
