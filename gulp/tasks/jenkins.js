@@ -17,15 +17,16 @@ var OPTIONS = {
 };
 
 gulp.task('jenkins', ['jenkins:folder', 'jenkins:jobs']);
+
 gulp.task('jenkins:folder', function (cb) {
   // create jenkins folder
   jenkins.init(OPTIONS);
   jenkins.create_folder(APP_FOLDER, function (error, data) {
-    if (error && [200, 302].indexOf(data.statusCode) == -1) {
+    if (error && data && data.headers['x-error'] === 'A job already exists with the name ?' + APP_FOLDER + '?') {
+      console.log('Folder already exists');
+    } else if (error && data && [200, 302].indexOf(data.statusCode) == -1) {
       console.log('ERROR: ' + error + ':' + JSON.stringify(data));
-      return;
     }
-    console.log(JSON.stringify(data));
     cb();
   });
 });
@@ -44,12 +45,27 @@ gulp.task('jenkins:jobs', ['jenkins:folder'], function () {
       if (file.endsWith('.xml')) {
         var jobName = file.substr(0, file.length - 4);
         var fileContent = fs.readFileSync(testFolder + file, "utf8");
-        jenkins.create_job(jobName, replaceAttributes(fileContent), function (error, data) {
-          if (error) {
-            console.log('ERROR: ' + error + ':' + JSON.stringify(data));
-            return;
+        jenkins.job_info(jobName, function(error, data) {
+          var exists = !error;
+          if (exists) {
+            console.log('Job ' + jobName + ' exists, overwriting...');
+            jenkins.update_job(jobName, replaceAttributes(fileContent), function (error, data) {
+              if (error) {
+                console.log('ERROR: ' + error + ':' + JSON.stringify(data));
+                return;
+              }
+              console.log('Overwritten.');
+            });
+          } else {
+            console.log('Creating job ' + jobName + '...');
+            jenkins.create_job(jobName, replaceAttributes(fileContent), function (error, data) {
+              if (error) {
+                console.log('ERROR: ' + error + ':' + JSON.stringify(data));
+                return;
+              }
+              console.log('Created.');
+            });
           }
-          console.log(JSON.stringify(data));
         });
       }
     });

@@ -2,7 +2,7 @@
 
 ### Popis
 Automatizace (CI/CD) projektu je řešena skrze gulp tasky, které lze spouštět lokálně, primárně jsou ale určené k běhu na 
-Jenkis prostředí. To umožňuje provádění tasků v stabilním prostředí (ne vývojářský stroj) a automatické spouštění tasků
+Jenkis prostředí. To umožňuje provádění tasků ve stabilním prostředí (ne vývojářský stroj) a automatické spouštění tasků
 v daný čas nebo triggerovaný jinými událostmi (push do gitu, cron, ...).
 
 ### Gulp task
