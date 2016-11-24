@@ -89,7 +89,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [helpers.root('*'), helpers.root('src', 'app', 'styles')],
         exclude: helpers.root('src', 'app'),
         loader: 'null'
       }
