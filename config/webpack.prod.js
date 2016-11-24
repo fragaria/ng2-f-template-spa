@@ -17,7 +17,8 @@ const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const ENV = process.env.ENV = process.env.NODE_ENV = 'prod';
 const METADATA = webpackMerge(commonConfig.metadata, {
   ENV: ENV,
-  baseUrl: '/demo/'
+  baseUrl: '/demo/',
+  timestamp: new Date().getTime()
 });
 
 /**

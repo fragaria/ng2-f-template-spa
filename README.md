@@ -1,21 +1,25 @@
 ## SEED APP - frontend
 
+### Prerekvizity
+- [GIT](https://git-scm.com/download/) - [testovaná verze 2.10.2](https://github.com/git-for-windows/git/releases/download/v2.10.2.windows.1/Git-2.10.2-32-bit.exe)
+- [NODE](https://nodejs.org/en/download/) - [testovaná verze 6.9.1](https://nodejs.org/dist/v6.9.1/node-v6.9.1-x86.msi)
+
 ### Příprava projektu
 - Udělejte si `git clone` této repozitory a přesuňte se do adresáře projektu
-- Ujistěte se, že máte nainstalován [node.js](https://nodejs.org/)
+- Ujistěte se, že máte nainstalován [node.js](https://nodejs.org/) (`node --version`)
 - Spusťte `npm install -g webpack webpack-dev-server typings typescript` pro instalaci globálních závislostí
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
-- Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/`
+- Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/` _(pozor, nikoliv .npmrc.txt)_
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
-- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu
-- Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů
+- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz. [config module](docs/config.md))
+- Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů (více viz. [init](docs/init.md))
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
 
 ### Tasky (build a běh aplikace)
 - `npm start` - spuštění aplikace v DEV režimu
 - `npm test` - spuštění testů a coverage analýzy
-- `npm run e2e` - spuštění e2e testů
+- `npm run e2e` - spuštění e2e testů (vyžaduje Javu a Chrome)
 - `npm run build:prod` - pro přípravu souborů pro produkční nasazení
 - `npm run docs`
 
@@ -45,3 +49,13 @@
 
 ### ng2-bootstrap BS4
 - `./src/app/styles/customization.scss` - nutne doplnit/zkontrolovat pouzivane glyphicons z duvodu kompatibility s bootstrap3
+
+### Moduly, které projekt obsahuje
+
+- [config](docs/config.md)
+- [logging](docs/logging.md)
+- [mock api](docs/mock-api.md)
+
+### Poznámky pro vývojáře
+
+- [Promises vs Observables](docs/developers/promises-observables.md)

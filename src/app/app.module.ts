@@ -25,8 +25,7 @@ import {
     ItemModule,
     BootstrapModule,
     HttpModule,
-    MockApiModule
-
+    MockApiModule.forRoot()
   ],
   declarations: [AppComponent],
   exports: [AppComponent],

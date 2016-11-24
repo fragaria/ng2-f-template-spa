@@ -21,6 +21,7 @@ const METADATA = {
   host: 'localhost',
   port: 8080,
   HMR: HMR,
+  timestamp: '1'
 };
 
 /*
