@@ -47,6 +47,7 @@
   - `index.html` - vstupní stránka aplikace
   - `main.ts` - vstupní bod aplikace
 - `typings/` - typescript definice
+- `.bootstraprc` - konfigurace Bootstrapu a načítáni scss
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
 
