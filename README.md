@@ -47,6 +47,10 @@
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
 
+### Procesy
+
+- [build](docs/build.md)
+
 ### Moduly, které projekt obsahuje
 
 - [config](docs/config.md)
