@@ -6,7 +6,7 @@ Jenkis prostředí. To umožňuje provádění tasků ve stabilním prostředí 
 v daný čas nebo triggerovaný jinými událostmi (push do gitu, cron, ...).
 
 ### Gulp task
-Pokud jsou v gulp/tasks/jenkins.js správně nastavené údaje, dojde k vytvoření nových jobů v Jenkins.
+Pokud jsou v `gulp/tasks/jenkins.js` správně nastavené údaje, dojde k vytvoření nových jobů v Jenkins.
  
 > Aktuálně je připraven pouze build job, další budou doplněny po upřesnění požadavků.
 

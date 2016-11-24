@@ -11,7 +11,7 @@
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
 - Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/` _(pozor, nikoliv .npmrc.txt)_
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
-- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz. [config module](docs/config.md))
+- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz [config module](docs/config.md))
 - Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
@@ -22,6 +22,9 @@
 - `npm run e2e` - spuštění e2e testů (vyžaduje Javu a Chrome)
 - `npm run build:prod` - pro přípravu souborů pro produkční nasazení
 - `npm run docs`
+
+### Tasky (CI)
+- `npm run jenkins` vytvoří joby v Jenkinsu (více viz [jenkins](docs/jenkins.md))
 
 ### Tasky (validace)
 - `npm run sonar` pro spuštění analýzy souborů na chyby
