@@ -43,7 +43,7 @@ export class AppMissingTranslationHandler implements MissingTranslationHandler {
 
     handle(params: string) {
         this.logger.warn(`AppMissingTranslationHandler. ${params}`);
-        return ``;
+        return ` `;
     }
 }
 
