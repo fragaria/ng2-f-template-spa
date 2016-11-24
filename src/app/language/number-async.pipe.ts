@@ -3,7 +3,14 @@ import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { LanguageService } from './language.service';
 import { Config } from '../config';
-
+/* *
+ * NumberAsyncPipe, expecting Language and Config services
+ * - inspired by @angular/common DecimalPipe [https://angular.io/docs/ts/latest/api/common/index/DecimalPipe-pipe.html]
+ *
+ * ### Syntax
+ *
+ * - <p>{{ 123456.456 | numberAsync | async }}</p>
+ * */
 @Pipe({
     name: 'numberAsync'
 })

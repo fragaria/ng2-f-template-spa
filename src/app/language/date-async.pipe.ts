@@ -3,7 +3,14 @@ import { Observable } from 'rxjs/Observable';
 import { LanguageService } from './language.service';
 import { DatePipe } from '@angular/common';
 import { Config } from '../config';
-
+/* *
+ * DateAsyncPipe, expecting Language and Config services
+ * - inspired by @angular/common DatePipe [https://angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html]
+ *
+ * ### Syntax
+ *
+ * - <p>{{ '2016-11-01T00:00:00+00:00' | dateAsync | async }}</p>
+ * */
 @Pipe({
     name: 'dateAsync'
 })

@@ -25,7 +25,7 @@ export class CustomTranslateLoader implements TranslateLoader {
         urlResources = urlResources.replace("${lang}",lang);
         urlResources = urlResources.replace("${module}",this.module);
         return this.httpService.getObject(urlResources)
-            .map(data => data[0].data)
+            .map(data => data[0].data)//TODO: map function is defined by MockApiModule structure
             .merge(this.fallbackStaticLoader.getTranslation(lang))
             .catch((e) => {
                 return this.fallbackStaticLoader.getTranslation(lang);
@@ -37,7 +37,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     constructor(private logger:Logger){}
 
     handle(params: string) {
-        // this.logger.warn(`MyMissingTranslationHandler. ${params}`);
+        this.logger.warn(`MyMissingTranslationHandler. ${params}`);
         return `{{${params}}}`;
     }
 }

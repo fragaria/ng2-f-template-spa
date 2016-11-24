@@ -16,66 +16,55 @@ Dále modul LanguageModule poskytuje:
 ### Odstranění z projektu
 
 - Ze souboru `package.json` odstraňte `ng2-translate` balíček
-- Ze souboru `src/app/app.module.ts` odstraňte import `import { LanguageModule } from 'ng2-f-mock-api';` a řádek `MockApiModule.forRoot()` z pole `imports` (v dekorátoru `@NgModule` třídy `AppModule`)
+- Ze souboru `src/app/app.module.ts` odstraňte import `import { LanguageModule } from './language';` a řádek `LanguageModule` z pole `imports` (v dekorátoru `@NgModule` třídy `AppModule`)
+- Ze souboru `src/app/app.component.ts` odstraňte `createTranslateProviders('app')` a z constructoru:
+```js
+        languageService.langChanged$.subscribe(lang => {
+                // translateService.resetLang(lang); uncomment if you want to call API everytime
+                translateService.use(lang);
+            }
+        )
+```
+- Z adresáře odstraňte složku src/assets/i18n
+
+### Použití hlavního slovníku
+
+- Přidejte do `MockApiModule` (v souboru `src/app/app.module.ts`) svá mock data ... více viz. [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api)). Pokud bude struktura a jiná než je od navržené struktury, je nutné změnit v souboru `src/app/language/custom-translate-loader.service.ts` mapovací funkci `.map(data => data[0].data)` a v `src/assets/configs/dev.js` querry string
+- Přidejte svá data do adresáře `src/assets/i18n/app/` , do souborů en.js a cs.js
 
 ### Použití
 
-- Předejte do `MockApiModule` (v souboru `src/app/app.module.ts`) svá mock data (data nemusíte předávat, pokud vám stačí ta co jsou v balíčku `ng2-f-mock-api` obsažena více viz. [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api))
-
 ```js
 
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule }  from '@angular/http';
+import { Component } from '@angular/core';
+import { TranslateService } from 'ng2-translate';
+import { LanguageService, createTranslateProviders } from '../language';
 
-// Import mock module
-import { MockApiModule } from 'ng2-f-mock-api';
 
-import { AppComponent } from './app.component';
-
-// Your mock data (move it to separate file)
-let items = [
-  { id: 11, title: 'Whatever' },
-  { id: 12, title: 'Thing' }
-];
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    HttpModule,
-    // mock module with your mock data
-    MockApiModule.forRoot({items: items})
-  ],
-  declarations: [ AppComponent ],
-  exports: [ AppComponent ],
-  bootstrap: [ AppComponent ]
+@Component({
+  selector: 'test-component',
+  template: `<h1>{{ itemMsg }}</h1>
+             <h1>{{ 'items' | translate }}</h1>
+`,
+  providers:[createTranslateProviders('item')]
 })
-export class AppModule { }
+export class TestComponent {
+  itemMsg:string;
 
-```
+  constructor(languageService: LanguageService,
+              translateService:TranslateService) {
 
-- Volejte ve vašich službách místo ostré url mockovanou (např. `url = 'api/items'`), ideálně využíte [Config module](./config.md) pro uložení url pro službu (v případě, že pak budete mít už osté api, tak by vám pak mělo stačit v konfigu změnit hodnotu pro url a odstranění mock modulu)
+    languageService.langChanged$.subscribe(lang => {
+      // translateService.resetLang(lang); uncomment if you want to call API everytime
+      translateService.use(lang);
+    });
 
-```js
-
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
-import { Config } from '../config';
-
-@Injectable()
-export class MyService {
-  // in config file set 'mymoduleApiUrl' to 'api/items'
-  protected url: string;
-  // protected url = 'api/items';  // Use this if you do not use config service
-
-  constructor (private config: Config, protected http: Http) {
-    // Get url from config service mymoduleApiUrl = 'api/items'
-    this.url = config.getVal('mymoduleApiUrl');
+    translateService.get('items')
+        .merge(translateService.onLangChange) //pridano z duvodu funkce get nereflektuje zmenu jazyka a slovniku
+        .mergeMap(() => translateService.get('items'))
+        .subscribe( value => this.itemMsg = value );
   }
-
 }
-
 ```
 
-- více o použití viz. [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api)
+- více o použití viz. [ng2-translate](https://github.com/ocombe/ng2-translate)

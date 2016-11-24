@@ -22,7 +22,6 @@ import {
     SharedModule,
     ItemModule,
     HttpModule,
-    MockApiModule,
     LanguageModule,
     MockApiModule.forRoot()
   ],
