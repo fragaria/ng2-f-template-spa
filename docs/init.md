@@ -20,7 +20,7 @@ Potom se provede náhrada `seed` značek za vámi zadaná data (a případně se
 Seed značky jsou nahrazeny za vámi zadaná data (popřípadě normalizované tvary vašich dat) při spuštění příkazu
 
 - v souboru `README.md` je nahrazeno jméno projektu
-- v souboru `package.json` je nahrazeno jméno projektu, popis projektu a git url repozitáře
+- v souboru `package.json` je nahrazeno jméno projektu, popis projektu a git url repozitáře, verze je nastavena na 0.0.0-SNAPSHOT
 - v souboru `src/index.html` je nahrazen html značka, do které se aplikace načte
 - v souboru `src/app/app.component.ts` je nahrazen `selector` pro `AppComponent`
 - v souboru `config/karma.conf.js` je nahrazeno jméno `suite` pro testy postavené na [karma](https://karma-runner.github.io/1.0/index.html)
