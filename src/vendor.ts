@@ -9,8 +9,8 @@ import '@angular/http';
 import '@angular/router';
 
 
-// RxJS 5
-// import 'rxjs/Rx';
+// RxJS
+import './rxjs-operators';
 
 
 // For vendors for example jQuery, Lodash, angular2-jwt import them here

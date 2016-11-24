@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import './rxjs-operators';
 import { LanguageModule, LanguageService, createTranslateProviders } from './language';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
