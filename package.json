@@ -71,6 +71,7 @@
     "gulp": "^3.9.1",
     "gulp-bump": "^0.3.1",
     "gulp-git": "^1.7.2",
+    "gulp-jenkins": "ondrejchmelar/gulp-jenkins.git#v0.2.3",
     "gulp-maven-deploy": "^0.2.0",
     "gulp-pipe": "^1.0.4",
     "gulp-plumber": "^1.0.1",
@@ -142,7 +143,6 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.6.3",
     "ng2-f-mock-api": "~0.0.8",
-    "gulp-jenkins": "ondrejchmelar/gulp-jenkins.git#v0.2.0",
     "ng2-translate": "~2.4.4",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "0.6.25"
