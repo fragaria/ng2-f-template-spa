@@ -26,7 +26,11 @@ export class CustomTranslateLoader implements TranslateLoader {
         urlResources = urlResources.replace("${module}",this.module);
         return this.httpService.getObject(urlResources)
             .map(data => data[0].data)//TODO: map function is defined by MockApiModule structure
-            .merge(this.fallbackStaticLoader.getTranslation(lang))
+            .combineLatest(this.fallbackStaticLoader.getTranslation(lang), (data1,data2)=> {
+                let result ={};
+                Object.assign(result , data2, data1);
+                return result;
+            })
             .catch((e) => {
                 return this.fallbackStaticLoader.getTranslation(lang);
             })
