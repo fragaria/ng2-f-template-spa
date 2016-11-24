@@ -55,6 +55,7 @@
 - [config](docs/config.md)
 - [logging](docs/logging.md)
 - [mock api](docs/mock-api.md)
+- [lokalizace](docs/ng2-translate.md)
 
 ### Poznámky pro vývojáře
 
