@@ -51,6 +51,8 @@
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
 
+### [Časté problémy a otázky](docs/troubleshooting.md)
+
 ### Procesy
 
 - [build](docs/build.md)
