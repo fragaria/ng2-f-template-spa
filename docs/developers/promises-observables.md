@@ -22,4 +22,4 @@
 import { Observable } from 'rxjs/Observable'
 ```
 
-[zpět](../../README.md)
+[zpět na README](../../README.md)

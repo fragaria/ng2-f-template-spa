@@ -8,7 +8,7 @@ Build projektu se provádí pomocí nástroje [webpack](https://webpack.github.i
 - produkční prostředí `config/webpack.prod.js`
 - testy `config/webpack.test.js`
 
-Společným základem je soubor `config/webpack.common.js`. 
+Společným základem je soubor `config/webpack.common.js`.
 
 To který soubor se použije je dáno volbou commandu, který použijete pro build:
 
@@ -38,4 +38,4 @@ Pokud se provádí produkční build, tak se výsledné css ještě minifikují.
 
 Kopíruje složku `src/assets` do výsledné dist složky (tedy bude pak dostupná na url `/assets`). V této složce leží věci jako překlady, obrázky, [konfigurace](./config.md) atd.
 
-[zpět](../README.md)
+[zpět na README](../README.md)

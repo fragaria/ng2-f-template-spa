@@ -10,4 +10,4 @@ Do Nexusu se publikuje artefakt ve formátu .zip. Tyto soubory je v rámci nasaz
   - soubory bez verzovaného názvu (index.html, assets/*) na rozumnou nízkou hodnotu (5 minut)
 
 
-[zpět](../README.md)
+[zpět na README](../README.md)

@@ -211,4 +211,4 @@ Následující volby lze nastavit pro službu `Logger`
 - `debug` logovuje ladící zprávy (zaloguje pokud není nastaven level na `OFF` nebo `ERROR` nebo` WARN` nebo `INFO`)
 - `log` logovuje ladící zprávy (zaloguje pokud není nastaven level na `OFF` nebo `ERROR` nebo` WARN` nebo `INFO` nebo `DEBUG`)
 
-[zpět](../README.md)
+[zpět na README](../README.md)

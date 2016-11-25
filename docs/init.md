@@ -35,4 +35,4 @@ Seed značky jsou nahrazeny za vámi zadaná data (popřípadě normalizované t
 Pokud spustíte příkaz `npm run init` znovu, tak skončí s hláškou, že už byl jednou spuštěn.
 
 
-[zpět](../README.md)
+[zpět na README](../README.md)

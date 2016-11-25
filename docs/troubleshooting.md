@@ -32,3 +32,5 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 #### Jak úplně vypnu pro vývoj to upravené logování do konzole?
 
 - v souboru `src/assets/configs/config.js` nastavte pro klíč `logging.level` hodnotu na `0`
+
+[zpět na README](../README.md)

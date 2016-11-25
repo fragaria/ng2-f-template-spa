@@ -70,4 +70,4 @@ export class MyService {
 
 ```
 
-[zpět](../README.md)
+[zpět na README](../README.md)

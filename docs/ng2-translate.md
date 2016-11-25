@@ -68,3 +68,5 @@ export class TestComponent {
 ```
 
 - více o použití viz. [ng2-translate](https://github.com/ocombe/ng2-translate)
+
+[zpět na README](../README.md)

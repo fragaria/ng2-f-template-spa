@@ -9,3 +9,5 @@ Jedná se čistě o ukázkový modul, který obsahuje jednoduchý výpis polože
 - Odstraňte složku `src/app/item`
 - Ze souboru `src/app/app.module.ts` odstraňte import `import { ItemModule } from './item';` a řádek `ItemModule` z pole `imports` (v dekorátoru `@NgModule` třídy `AppModule`)
 - Ze všech `js` souborů, co jsou ve složce `src/assets/configs` odstraňte řádek s klíčem `item.apiUrl`
+
+[zpět na README](../README.md)
