@@ -61,6 +61,7 @@
 - [logging](docs/logging.md)
 - [mock api](docs/mock-api.md)
 - [lokalizace](docs/ng2-translate.md)
+- [item](docs/item.md)
 
 ### Poznámky pro vývojáře
 
