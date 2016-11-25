@@ -1,6 +1,6 @@
 import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler } from "ng2-translate/ng2-translate";
 import { Observable } from 'rxjs/Observable';
-import { HttpBaseService } from '../shared/http-base.service';
+import { HttpBaseService } from '../core';
 import { Config } from '../config';
 import { Logger } from '../logging';
 
@@ -46,5 +46,3 @@ export class AppMissingTranslationHandler implements MissingTranslationHandler {
         return ` `;
     }
 }
-
-

@@ -1,6 +1,6 @@
 import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 
-import { HttpBaseService } from '../shared/http-base.service';
+import { HttpBaseService } from '../core';
 import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate/ng2-translate';
 import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
 import { LanguageService } from './language.service';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpBaseService } from '../shared';
+import { HttpBaseService } from '../core';
 import { Config } from '../config';
 import { Item } from './item.model';
 

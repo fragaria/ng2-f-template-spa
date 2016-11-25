@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { HttpBaseService } from './http-base.service';
 import { LanguageModule } from "../language";
 
 @NgModule({
@@ -13,7 +12,6 @@ import { LanguageModule } from "../language";
   ],
   declarations: [HomeComponent, PageNotFoundComponent],
   exports: [HomeComponent, PageNotFoundComponent,
-    CommonModule, FormsModule],
-    providers: [HttpBaseService]
+    CommonModule, FormsModule]
 })
 export class SharedModule { }

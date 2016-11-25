@@ -9,6 +9,7 @@ import { routing } from './app.routing';
 import { Config } from './config';
 import { ItemModule } from './item';
 import { LanguageModule } from './language';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared';
 import {
   Logger,
@@ -19,6 +20,7 @@ import {
   imports: [
     BrowserModule,
     routing,
+    CoreModule,
     SharedModule,
     ItemModule,
     HttpModule,
