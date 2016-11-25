@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpBaseService } from './http-base.service';
+import { HttpBaseService, HttpRestJsonService } from './http';
 
 @NgModule({
   imports: [
@@ -8,7 +8,7 @@ import { HttpBaseService } from './http-base.service';
   ],
   // declarations: [],
   // exports: [],
-    providers: [ HttpBaseService ]
+    providers: [ HttpBaseService, HttpRestJsonService ]
 })
 export class CoreModule {
 

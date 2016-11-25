@@ -1,6 +1,6 @@
 import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 
-import { HttpBaseService } from '../core';
+import { HttpRestJsonService } from '../core';
 import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate/ng2-translate';
 import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
 import { LanguageService } from './language.service';
@@ -11,8 +11,8 @@ export function createTranslateProviders(module: string): any[] {
     return [
         {
             provide: TranslateLoader,
-            useFactory: (httpBaseService: HttpBaseService<any>, config:Config) => new CustomTranslateLoader(httpBaseService, config, module),
-            deps: [HttpBaseService, Config],
+            useFactory: (httpBaseService: HttpRestJsonService<any>, config:Config) => new CustomTranslateLoader(httpBaseService, config, module),
+            deps: [HttpRestJsonService, Config],
         },
         {
             provide: MissingTranslationHandler,
@@ -29,8 +29,8 @@ export function createTranslateProviders(module: string): any[] {
 
 const TRANSLATE_FOR_ROOT_PROVIDER: FactoryProvider = {
     provide: TranslateLoader,
-    useFactory: (httpBaseService: HttpBaseService<any>, config:Config) => new CustomTranslateLoader(httpBaseService, config, 'app'),
-    deps: [HttpBaseService, Config],
+    useFactory: (httpBaseService: HttpRestJsonService<any>, config:Config) => new CustomTranslateLoader(httpBaseService, config, 'app'),
+    deps: [HttpRestJsonService, Config],
 }
 
 export const TranslateModuleWithProvider: ModuleWithProviders = TranslateModule.forRoot(TRANSLATE_FOR_ROOT_PROVIDER);
