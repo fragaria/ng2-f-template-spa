@@ -13,7 +13,7 @@ export class ItemService {
 
   constructor (private config: Config, protected http: HttpBaseService<Item>) {
     // get url from config service
-    this.url = config.getVal('itemsApiUrl');
+    this.url = config.getVal('item.apiUrl');
   }
 
   getItems (): Observable<Item[]> {

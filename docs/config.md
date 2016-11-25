@@ -52,7 +52,7 @@ export class MyService {
   protected url: string;
 
   constructor (private config: Config) {
-    this.url = config.getVal('mymoduleApiUrl');
+    this.url = config.getVal('mymodule.apiUrl');
   }
 
 }

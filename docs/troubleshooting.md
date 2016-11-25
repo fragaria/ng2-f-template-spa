@@ -27,8 +27,8 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
 #### Jak vypnu pro vývoj logování extra objektů do konzole?
 
-- v souboru `src/assets/configs/config.js` nastavte pro klíč `loggingOnlyMsgInConsole` hodnotu na `true`
+- v souboru `src/assets/configs/config.js` nastavte pro klíč `logging.onlyMsgInConsole` hodnotu na `true`
 
 #### Jak úplně vypnu pro vývoj to upravené logování do konzole?
 
-- v souboru `src/assets/configs/config.js` nastavte pro klíč `loggingLevel` hodnotu na `0`
+- v souboru `src/assets/configs/config.js` nastavte pro klíč `logging.level` hodnotu na `0`
