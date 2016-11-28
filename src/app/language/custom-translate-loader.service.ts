@@ -1,5 +1,6 @@
 import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler } from "ng2-translate/ng2-translate";
 import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
 import { HttpRestJsonService } from '../core';
 import { Config } from '../config';
 import { Logger } from '../logging';
@@ -10,13 +11,14 @@ interface LangModel {lang: string; route:string; data:string;
 export class CustomTranslateLoader implements TranslateLoader {
     fallbackStaticLoader: TranslateStaticLoader;
 
-    constructor(protected httpRestService: HttpRestJsonService<LangModel>,
+    constructor(protected http: Http,
+                protected httpRestService: HttpRestJsonService<LangModel>,
                 protected config: Config,
                 protected module: string
                 ) {
         let prefix = `${this.config.getVal("language.prefix") || '/assets/i18n'}/${module}`;
         let suffix = this.config.getVal("language.suffix") || '.json';
-        this.fallbackStaticLoader = new TranslateStaticLoader(httpRestService.http, prefix, suffix);
+        this.fallbackStaticLoader = new TranslateStaticLoader(this.http, prefix, suffix);
     }
 
     getTranslation(lang: string): Observable<any> {

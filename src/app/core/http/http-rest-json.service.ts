@@ -8,8 +8,8 @@ import {
 import { Logger } from '../../logging';
 
 import { HttpError } from './errors';
+import { HttpBaseService } from './http-base.service';
 import {
-  baseHandleError,
   extractJsonDataToObj,
   extractJsonDataToObjects } from './utils';
 
@@ -41,7 +41,7 @@ export class HttpRestJsonService<T> {
   protected params = new URLSearchParams();
   protected model = null;
 
-  constructor (public http: Http, protected logger: Logger) { }
+  constructor (public http: HttpBaseService, protected logger: Logger) { }
 
   addObject (
     url: string,
@@ -50,9 +50,8 @@ export class HttpRestJsonService<T> {
 
     options = options || {};
 
-    return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
-                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model))
-                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+    return this.http.post(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params), options.errorCallback)
+                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model));
   }
 
   getObjects (
@@ -61,9 +60,8 @@ export class HttpRestJsonService<T> {
 
     options = options || {};
 
-    return this.http.get(url, this.getRequestOptions(options.headers, options.params))
-                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObjects<T>(response, options.model))
-                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+    return this.http.get(url, this.getRequestOptions(options.headers, options.params), options.errorCallback)
+                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObjects<T>(response, options.model));
   }
 
   getObject (
@@ -72,9 +70,8 @@ export class HttpRestJsonService<T> {
 
     options = options || {};
 
-    return this.http.get(url, this.getRequestOptions(options.headers, options.params))
-                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model))
-                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+    return this.http.get(url, this.getRequestOptions(options.headers, options.params), options.errorCallback)
+                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model));
   }
 
   updateObject (
@@ -84,9 +81,8 @@ export class HttpRestJsonService<T> {
 
     options = options || {};
 
-    return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params))
-                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model))
-                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+    return this.http.put(url, JSON.stringify(obj), this.getRequestOptions(options.headers, options.params), options.errorCallback)
+                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model));
   }
 
   deleteObject (
@@ -95,9 +91,8 @@ export class HttpRestJsonService<T> {
 
     options = options || {};
 
-    return this.http.delete(url, this.getRequestOptions(options.headers, options.params))
-                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model))
-                    .catch(error => options.errorCallback ? options. errorCallback(error) : this.handleError(error));
+    return this.http.delete(url, this.getRequestOptions(options.headers, options.params), options.errorCallback)
+                    .map(response => options.successCallback ? options.successCallback(response) : extractJsonDataToObj<T>(response, options.model));
   }
 
   protected getRequestOptions(headers?: Headers, params?: URLSearchParams): any {
@@ -106,7 +101,4 @@ export class HttpRestJsonService<T> {
     return { headers: targetHeaders, search: targetParams }
   }
 
-  protected handleError (error: Response | any): Observable<Response> {
-    return baseHandleError(error, this.logger);
-  }
 }
