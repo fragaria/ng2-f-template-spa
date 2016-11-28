@@ -64,6 +64,8 @@
 - [mock api](docs/mock-api.md)
 - [lokalizace](docs/ng2-translate.md)
 - [item](docs/item.md)
+- [core](docs/core.md)
+- [shared](docs/shared.md)
 
 ### Poznámky pro vývojáře
 
