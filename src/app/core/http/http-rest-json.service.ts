@@ -46,7 +46,7 @@ export class HttpRestJsonService<T> {
   addObject (
     url: string,
     obj: T,
-    options?: ObjectExtraOptions<T>): Observable<T | Response> {
+    options?: ObjectExtraOptions<T>): Observable<T> {
 
     options = options || {};
 
@@ -56,7 +56,7 @@ export class HttpRestJsonService<T> {
 
   getObjects (
     url: string,
-    options?: ObjectsExtraOptions<T>): Observable<T[] | Response> {
+    options?: ObjectsExtraOptions<T>): Observable<T[]> {
 
     options = options || {};
 
@@ -66,7 +66,7 @@ export class HttpRestJsonService<T> {
 
   getObject (
     url: string,
-    options?: ObjectExtraOptions<T>): Observable<T | Response> {
+    options?: ObjectExtraOptions<T>): Observable<T> {
 
     options = options || {};
 
@@ -77,7 +77,7 @@ export class HttpRestJsonService<T> {
   updateObject (
     url: string,
     obj: T,
-    options?: ObjectExtraOptions<T>): Observable<T | Response> {
+    options?: ObjectExtraOptions<T>): Observable<T> {
 
     options = options || {};
 
@@ -87,7 +87,7 @@ export class HttpRestJsonService<T> {
 
   deleteObject (
     url: string,
-    options?: ObjectExtraOptions<T>): Observable<T | Response> {
+    options?: ObjectExtraOptions<T>): Observable<T> {
 
     options = options || {};
 
