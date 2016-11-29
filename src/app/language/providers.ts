@@ -2,9 +2,8 @@ import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 import { Http } from '@angular/http';
 
 import { HttpRestJsonService } from '../core';
-import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate/ng2-translate';
+import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate';
 import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
-import { LanguageService } from './language.service';
 import { Config } from '../config';
 import { Logger } from '../logging';
 
