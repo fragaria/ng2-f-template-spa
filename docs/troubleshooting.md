@@ -4,7 +4,7 @@
 
 Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
-#### Při spuštění `npm install` mi to hned skončí s errorem
+#### Spuštění `npm install` ihned skončí errorem
 
 - ujistěte se, že jste si do souboru `.npmrc` v rootu projektu přidali řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/`
 
@@ -16,9 +16,9 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
 #### Po té co jsem stáhnul nové změny z `gitu` a spustil `npm start`, tak mi aplikace hází chybu do `konzole prohlížeče`
 
-- zkuste spustit `npm install`, možná někdo udělal změnu v nějaké knihovně (nebo přidal novou) a zároveň v projektu (a tyto změny jsou na sobě závislé) a zapomněl vám to říct.
+- zkuste spustit `npm install`, možná někdo udělal změnu v nějaké knihovně (nebo přidal novou).
 
-- zkuste se podívat, jestli nepřibyl nový klíč v [konfiguraci](./config.md) `src/assets/configs/dev.js` (pokud ano přidejte si jej i do svého `src/assets/configs/config.js`), popřípadě znovu spusťte `npm run init-conf` a dejte `y` na otázku zad-li chcete konfiguraci přepsat (tím se vaše osobní konfigurace v `src/assets/configs/config.js` přepíše konfigurací v `src/assets/configs/dev.js`).
+- zkuste se podívat, jestli nepřibyl nový klíč v [konfiguraci](./config.md) `src/assets/configs/dev.js` (pokud ano přidejte si jej i do svého `src/assets/configs/config.js`), popřípadě znovu spusťte `npm run init-conf` a dejte `y` na otázku zda-li chcete konfiguraci přepsat (tím se vaše osobní konfigurace v `src/assets/configs/config.js` přepíše konfigurací v `src/assets/configs/dev.js`).
 
 #### Příkaz `npm run e2e` mi končí s chybou
 
@@ -29,7 +29,7 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
 - v souboru `src/assets/configs/config.js` nastavte pro klíč `logging.onlyMsgInConsole` hodnotu na `true`
 
-#### Jak úplně vypnu pro vývoj to upravené logování do konzole?
+#### Jak úplně vypnu pro vývoj upravené logování do konzole?
 
 - v souboru `src/assets/configs/config.js` nastavte pro klíč `logging.level` hodnotu na `0`
 

@@ -29,7 +29,7 @@ Dále modul LanguageModule poskytuje:
 
 ### Použití hlavního slovníku
 
-- Přidejte do `MockApiModule` (v souboru `src/app/app.module.ts`) svá mock data ... více viz. [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api)). Pokud bude struktura a jiná než je od navržené struktury, je nutné změnit v souboru `src/app/language/custom-translate-loader.service.ts` mapovací funkci `.map(data => data[0].data)` a v `src/assets/configs/dev.js` querry string
+- Přidejte do `MockApiModule` (v souboru `src/app/app.module.ts`) svá mock data. Více viz. [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api)). Pokud se bude vaše struktura lišit od navržené struktury, je nutné změnit v souboru `src/app/language/custom-translate-loader.service.ts` mapovací funkci `.map(data => data[0].data)` a v `src/assets/configs/dev.js` query string
 - Přidejte svá data do adresáře `src/assets/i18n/app/` , do souborů en.js a cs.js
 
 ### Použití

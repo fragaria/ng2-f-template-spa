@@ -4,7 +4,7 @@
 
 Build projektu se provádí pomocí nástroje [webpack](https://webpack.github.io/) v jedné z následujících konfigurací:
 
-- vývoj `config/webpack.develop.js`
+- vývojové prostředí `config/webpack.develop.js`
 - produkční prostředí `config/webpack.prod.js`
 - testy `config/webpack.test.js`
 
@@ -30,7 +30,7 @@ Pokud se provádí produkční build, tak všechny tři soubory obsahují ješt�
 
 #### Vytváří výsledné `css` soubory
 
-Vytváří vásledné css styly a vkládá je do `src/index.html` do `<style type="text/css">` tagu v `<head>` části.
+Vytváří výsledné css styly a vkládá je do `src/index.html` do `<style type="text/css">` tagu v `<head>` části.
 
 Pokud se provádí produkční build, tak se výsledné css ještě minifikují.
 
