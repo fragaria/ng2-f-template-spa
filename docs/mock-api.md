@@ -2,7 +2,7 @@
 
 ### Popis
 
-Projekt v současnosti používá pro mockování api samostatný npm balíček [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api), který je postaven nad modulem [in-memory-web-api](https://github.com/angular/in-memory-web-api), který udržuje data v paměti (přičemž se lze přes standartní `HttpModule` dotazovat, jako by to bylo standartní api). Pokud máte vlastní api mocky (nebo používáte něco jako [apiary](https://apiary.io/)) a nepotřebujete nic dalšího mockovat, pak můžete modul odstranit (viz níže).
+Projekt v současnosti používá pro mockování api samostatný npm balíček [ng2-f-mock-api](https://github.com/fragaria/ng2-f-mock-api), který je postaven nad modulem [in-memory-web-api](https://github.com/angular/in-memory-web-api), který udržuje data v paměti (přičemž se lze přes standardní `HttpModule` dotazovat, jako by to bylo standardní api). Pokud máte vlastní api mocky (nebo používáte něco jako [apiary](https://apiary.io/)) a nepotřebujete nic dalšího mockovat, pak můžete modul odstranit (viz níže).
 
 ### Odstranění z projektu
 
@@ -45,7 +45,7 @@ export class AppModule { }
 
 ```
 
-- Volejte ve vašich službách místo ostré url mockovanou (např. `url = 'api/items'`), ideálně využíte [Config module](./config.md) pro uložení url pro službu (v případě, že pak budete mít už osté api, tak by vám pak mělo stačit v konfigu změnit hodnotu pro url a odstranění mock modulu)
+- Volejte ve vašich službách místo ostré url mockovanou (např. `url = 'api/items'`), ideálně využijte [Config module](./config.md) pro uložení url pro službu (v okamžiku, kdy budete mít ostré api, by vám mělo stačit v configu změnit hodnotu pro url a odstranit mock modul)
 
 ```js
 

@@ -2,7 +2,7 @@
 
 ### Popis
 
-Jedná se o modul, který lze použít k logování v projektu (umí odchytnout javascriptovou `console` a logují se pomocí něj chyby, které zachytává `angular 2` ).
+Jedná se o modul, který lze použít k logování v projektu (umí odchytnout javascriptovou `console` a logují se pomocí něj chyby, které zachytává `Angular 2` ).
 
 ### Příprava a použití
 

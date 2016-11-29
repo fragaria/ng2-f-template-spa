@@ -2,7 +2,7 @@
 
 ### Popis
 
-Do Nexusu se publikuje artefakt ve formátu .zip. Tyto soubory je v rámci nasazení nutné zpřístupnít přes jednoduchý webserver (nginx, apache) a provést následující kroky:
+Do Nexusu se publikuje artefakt ve formátu .zip. V něm obsažené soubory je v rámci nasazení nutné zpřístupnít přes jednoduchý webserver (nginx, apache) a provést následující kroky:
 
 - vytvořit symlink `assets/configs/config.js` -> `assets/configs/dev.js` (nebo `prod.js`, podle prostředí)
 - nastavit na webserveru expires headery:

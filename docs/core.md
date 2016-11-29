@@ -2,7 +2,7 @@
 
 ### Popis
 
-Jedná se o module, který obsahuje [komponenty](https://angular.io/docs/ts/latest/guide/architecture.html#!#components) a [služby](https://angular.io/docs/ts/latest/guide/architecture.html#!#services), které jsou v jediné instanci pro celou aplikaci.
+Jedná se o modul, který obsahuje [komponenty](https://angular.io/docs/ts/latest/guide/architecture.html#!#components) a [služby](https://angular.io/docs/ts/latest/guide/architecture.html#!#services), které jsou v jediné instanci pro celou aplikaci.
 
 ### Co obsahuje
 
