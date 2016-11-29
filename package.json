@@ -9,7 +9,7 @@
   },
   "scripts": {
     "gulp": "gulp",
-    "preinit": "npm version 0.0.0-SNAPSHOT",
+    "preinit": "npm version 0.0.0-SNAPSHOT --no-git-tag-version",
     "init": "gulp init",
     "init-conf": "gulp init-conf",
     "bump": "gulp bump",
