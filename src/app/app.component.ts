@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { LanguageModule, LanguageService, createTranslateProviders } from './language';
-import { TranslateService } from 'ng2-translate/ng2-translate';
+import { TranslateService } from 'ng2-translate';
 
 @Component({
   selector: 'seed-app',

@@ -10,6 +10,7 @@
 - Spusťte `npm install -g webpack webpack-dev-server typings typescript` pro instalaci globálních závislostí
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
 - Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/` _(pozor, nikoliv .npmrc.txt)_
+> `echo "registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/" > .npmrc`
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
 - Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz [config module](docs/config.md))
 - Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů (více viz. [init](docs/init.md))

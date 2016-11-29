@@ -20,7 +20,14 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
 - zkuste se podívat, jestli nepřibyl nový klíč v [konfiguraci](./config.md) `src/assets/configs/dev.js` (pokud ano přidejte si jej i do svého `src/assets/configs/config.js`), popřípadě znovu spusťte `npm run init-conf` a dejte `y` na otázku zda-li chcete konfiguraci přepsat (tím se vaše osobní konfigurace v `src/assets/configs/config.js` přepíše konfigurací v `src/assets/configs/dev.js`).
 
-#### Příkaz `npm run e2e` mi končí s chybou
+#### Příkaz `npm run test` končí s chybou
+
+> src/app/app.component.ts[7, 13]: The selector of the component "AppComponent" should be named kebab-case (https://goo.gl
+/mBg67Z)
+
+- Selektor komponenty opravdu [musí](https://github.com/mgechev/codelyzer/issues/68) být v kebab-case - tedy obsahovat pomlčku. Pokud je název vašeho projektu jednoslovný (`project`), použijte např. `app-project`. 
+
+#### Příkaz `npm run e2e` končí s chybou
 
 - ujistěte se, že máte nainstalovanou [javu](https://www.java.com/en/download/)
 - ujistěte se, že máte nainstalován prohlížeč [chrome](https://www.google.com/chrome/browser/desktop/index.html)
