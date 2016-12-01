@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const helpers = require('./helpers');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 /*
  * Webpack Plugins
@@ -156,8 +157,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: helpers.root('src', 'app'),
-        loaders: ['style', 'css', 'postcss', 'sass']
+        include: helpers.root('src', 'app', 'styles'),
+        //loader: ExtractTextPlugin.extract(['css','sass'])
+        loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap']
+        //loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.(woff2?|ttf|eot|svg)$/,
@@ -180,6 +183,7 @@ module.exports = {
       VERSION: JSON.stringify(require("../package.json").version)
     }),
 
+    //new ExtractTextPlugin("styles.css"),
     /*
      * Plugin: ForkCheckerPlugin
      * Description: Do type checking in a separate process, so webpack don't need to wait.

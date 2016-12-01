@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row lol lol2">
     <div class="col-sm-12">
         <sa-title [title]="'items'" [titleIsTransKey]="true"></sa-title>
         <div class="list-group">
             <div *ngFor='let item of items | async' class="list-group-item">
-                <a (click)="onSelect(item)" class="btn btn-link">{{item.title}}</a>
+                <a (click)="onSelect(item)" class="btn btn-link">p {{item.title}}</a>
             </div>
         </div>
     </div>

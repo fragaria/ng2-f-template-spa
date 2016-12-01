@@ -11,6 +11,7 @@ import { LanguageService, createTranslateProviders } from '../language';
 @Component({
   selector: 'sa-item-list',
   templateUrl: 'item-list.component.html',
+  styleUrls: ['item.component.scss'],
   providers:[createTranslateProviders('item')]
 })
 export class ItemListComponent implements OnInit {

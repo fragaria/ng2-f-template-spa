@@ -8,7 +8,7 @@ import { ItemService } from './item.service';
 
 @Component({
   selector: 'sa-item-detail',
-  templateUrl: 'item-detail.component.html'
+  templateUrl: 'item-detail.component.html',
 })
 export class ItemDetailComponent implements OnInit {
   item: Item;
