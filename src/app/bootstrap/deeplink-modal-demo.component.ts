@@ -2,7 +2,6 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-
 // todo: change to ng2-bootstrap
 import { ModalDirective } from 'ng2-bootstrap/components/modal';
 
@@ -13,7 +12,6 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal';
 export class DeepLinkModalDemoComponent implements AfterViewInit {
     @ViewChild('childModal') public childModal: ModalDirective;
     inputValue: number;
-    // @ViewChild('smModal') public smModal: ModalDirective;
 
     constructor(private route: ActivatedRoute, private _location: Location) {
     }

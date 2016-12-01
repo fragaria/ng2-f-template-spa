@@ -7,7 +7,6 @@ import { ButtonsModule } from 'ng2-bootstrap/components/buttons';
 import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { DropdownModule } from 'ng2-bootstrap/components/dropdown';
-import { ModalModule as RouteModalModule } from "ng2-modal";
 import { ModalModule } from 'ng2-bootstrap/components/modal';
 import { PaginationModule } from 'ng2-bootstrap/components/pagination';
 import { ProgressbarModule } from 'ng2-bootstrap/components/progressbar';
@@ -43,7 +42,6 @@ import { DropdownDemoComponent } from './dropdown-demo.component';
         PaginationModule,
         ProgressbarModule,
         ReactiveFormsModule,
-        RouteModalModule,
         TabsModule,
         TypeaheadModule,
     ],
