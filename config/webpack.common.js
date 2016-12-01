@@ -157,7 +157,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: helpers.root('src', 'app', 'styles'),
+        include: helpers.root('src', 'app', 'styles', 'main.scss'),
         //loader: ExtractTextPlugin.extract(['css','sass'])
         loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap']
         //loaders: ['style', 'css', 'sass']
