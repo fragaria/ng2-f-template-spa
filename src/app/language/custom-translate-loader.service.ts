@@ -1,4 +1,4 @@
-import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler } from "ng2-translate/ng2-translate";
+import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from "ng2-translate";
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { HttpRestJsonService } from '../core';
@@ -43,7 +43,7 @@ export class CustomTranslateLoader implements TranslateLoader {
 export class AppMissingTranslationHandler implements MissingTranslationHandler {
     constructor(private logger:Logger){}
 
-    handle(params: string) {
+    handle(params: MissingTranslationHandlerParams) {
         this.logger.warn(`AppMissingTranslationHandler. ${params}`);
         return ` `;
     }
