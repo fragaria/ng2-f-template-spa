@@ -7,7 +7,7 @@
 ### Příprava projektu
 - Udělejte si `git clone` této repozitory a přesuňte se do adresáře projektu
 - Ujistěte se, že máte nainstalován [node.js](https://nodejs.org/) (`node --version`)
-- Spusťte `npm install -g webpack webpack-dev-server typings typescript` pro instalaci globálních závislostí
+- Spusťte `npm install -g webpack webpack-dev-server typescript` pro instalaci globálních závislostí
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
 - Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/` _(pozor, nikoliv .npmrc.txt)_
 > `echo "registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/" > .npmrc`
@@ -47,7 +47,6 @@
   - `assets/` - doplňující zdroje jako css, i18n, obrázky
   - `index.html` - vstupní stránka aplikace
   - `main.ts` - vstupní bod aplikace
-- `typings/` - typescript definice
 - `.bootstraprc` - konfigurace Bootstrapu a načítáni scss
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory

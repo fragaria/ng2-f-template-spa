@@ -8,14 +8,12 @@
     "sourceMap": true
   },
   "exclude": [
-    "node_modules",
-    "typings"
+    "node_modules"
   ],
   "filesGlob": [
     "./src/**/*.ts",
     "!./node_modules/**",
-    "./src/custom-typings.d.ts",
-    "./typings/index.d.ts"
+    "./src/custom-typings.d.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "resolveGlobs": true,

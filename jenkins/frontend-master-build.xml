@@ -50,7 +50,7 @@
 #npm set registry http://registry.npmjs.org
 npm config set registry https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/
 
-#npm install -g webpack webpack-dev-server typings typescript
+#npm install -g webpack webpack-dev-server typescript
 #npm install -g karma-cli protractor
 npm install
 npm run build

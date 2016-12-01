@@ -12,12 +12,11 @@
     "inlineSourceMap": true
   },
   "exclude": [
-    "node_modules",
-    "typings"
+    "node_modules"
   ],
   "filesGlob": [
-    "./src/app/**/*.ts",
-    "./typings/index.d.ts",
+    "./src/**/*.ts",
+    "./src/custom-typings.d.ts",
     "!./node_modules/**"
   ],
   "awesomeTypescriptLoaderOptions": {

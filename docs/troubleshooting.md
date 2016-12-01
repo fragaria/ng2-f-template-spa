@@ -10,10 +10,6 @@ Tato stránka obsahuje časté problémy a otázky, které vás mohou potkat:
 
 - pokud používáte proxy, ujistěte se že ji máte přidanou v souboru `.npmrc` v rootu projektu
 
-#### Spuštění `npm start` mi hází problémy s `typings`
-
-- smažte složku `typings` v rootu projektu a spusťte `npm install`
-
 #### Po té co jsem stáhnul nové změny z `gitu` a spustil `npm start`, tak mi aplikace hází chybu do `konzole prohlížeče`
 
 - zkuste spustit `npm install`, možná někdo udělal změnu v nějaké knihovně (nebo přidal novou).

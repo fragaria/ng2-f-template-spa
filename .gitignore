@@ -10,7 +10,6 @@
 /reports/
 /sonar/node_modules
 /sonar/reports
-/typings/
 
 /src/*.js
 /src/assets/configs/config.js
