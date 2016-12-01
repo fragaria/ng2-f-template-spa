@@ -12,7 +12,7 @@ var forReplace = [
   [ 'Seed template for SPA', 'projectDescription' ],
   [ 'seed-app-frontend', 'normalizedProjectNameWithTail' ],
   [ 'SEED APP', 'upperCasedProjectName' ],
-  [ 'seed-app', 'normalizedProjectName' ],
+  [ 'seed-app', 'normalizedComponentSelector' ],
   [ 'seedApp', 'projectNameLowerUpperCase' ],
   [ 'SEED-APP-frontend', 'normalizedProjectNameWithTail' ],
   [ 'baseUrl: \'/demo/\',', 'prodUrlRootRepl']
@@ -37,8 +37,16 @@ function normalizeProjectName(name) {
   return name.toLowerCase().replace(" ", "-")
 }
 
+function normalizeComponentSelector(name) {
+  var res = normalizeProjectName(name);
+  if (res.indexOf('-') == -1) {
+    return 'app-' + res;
+  }
+  return res;
+}
+
 function projectNameLowerUpperCase(name) {
-  var nameArray = name.split("-")
+  var nameArray = name.split("-");
   return nameArray[0] + nameArray.slice(1).map(upperFirstLetter).join("")
 }
 
@@ -69,6 +77,7 @@ function userInputsPostProcess(userInputs) {
 
   projectData['normalizedProjectName'] = normalizeProjectName(projectName);
   projectData['upperCasedProjectName'] = projectName.toUpperCase();
+  projectData['normalizedComponentSelector'] = normalizeComponentSelector(projectName);
   projectData['normalizedProjectNameWithTail'] = normalizeProjectName(projectName) + '-frontend';
   projectData['projectNameLowerUpperCase'] = projectNameLowerUpperCase(normalizeProjectName(projectName));
   projectData['prodUrlRootRepl'] = 'baseUrl: \'' + prodUrlRoot + '\',';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpBaseService } from '../shared';
+import { HttpRestJsonService } from '../core';
 import { Config } from '../config';
 import { Item } from './item.model';
 
@@ -11,9 +11,9 @@ export class ItemService {
   protected url: string;
   protected model = Item;
 
-  constructor (private config: Config, protected http: HttpBaseService<Item>) {
+  constructor (private config: Config, protected http: HttpRestJsonService<Item>) {
     // get url from config service
-    this.url = config.getVal('itemsApiUrl');
+    this.url = config.getVal('item.apiUrl');
   }
 
   getItems (): Observable<Item[]> {

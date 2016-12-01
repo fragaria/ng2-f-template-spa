@@ -2,7 +2,7 @@
 
 ### Popis
 
-Jedná se o modul, který se používá ke konfiguraci projektu (nastavení mohou být rozdílná dle prostředí).
+Jedná se o modul, který se používá ke konfiguraci projektu (nastavení mohou být rozdílná dle prostředí, tedy se nastavují během deploy).
 
 ### Příprava modulu ve vývoji
 
@@ -52,14 +52,14 @@ export class MyService {
   protected url: string;
 
   constructor (private config: Config) {
-    this.url = config.getVal('mymoduleApiUrl');
+    this.url = config.getVal('mymodule.apiUrl');
   }
 
 }
 
 ```
 
-### Použití v produkčním prostředích
+### Použití v produkčních prostředích
 
 - při nasazení balíčku je třeba udělat symlink (nebo nakopírovat) produkční konfigurace na místo `config.js`, tedy něco jako `/app_root/myapp/assets/configs/config.js -> /app_configs/myapp/prod.js`
 - ve webovém serveru je také třeba nastavit nějak rozumně cachovací hlavičky pro `config.js` (kvůli tomu jak ho budou prohlížeče cachovat), při linkování do `index.html` soubor obsahuje za otazníkem jen parametr t, který má za hodnotu timestamp buildu:
@@ -70,4 +70,4 @@ export class MyService {
 
 ```
 
-[zpět](../README.md)
+[zpět na README](../README.md)

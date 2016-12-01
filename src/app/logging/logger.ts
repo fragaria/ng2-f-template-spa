@@ -41,7 +41,7 @@ export class Logger {
         let { allowConsoleCatch, level, onlyMsgInConsole } = Object.assign( {}, DEFAULT_OPTIONS, options );
 
         this._allowConsoleCatch = allowConsoleCatch;
-        this._level = level in Level && level || DEFAULT_OPTIONS.level;
+        this._level = level in Level ? level : DEFAULT_OPTIONS.level;
         this._onlyMsgInConsole = onlyMsgInConsole;
 
         this.catchConsole();

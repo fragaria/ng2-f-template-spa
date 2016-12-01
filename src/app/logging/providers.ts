@@ -22,9 +22,9 @@ export const LOGGER_PROVIDERS: any[] = [
     provide: Options,
     useFactory: (config: Config) => {
       let options = {};
-      if (config.getVal('loggingAllowConsoleCatch') !== undefined) options['allowConsoleCatch'] = config.getVal('loggingAllowConsoleCatch');
-      if (config.getVal('loggingLevel') !== undefined) options['level'] = config.getVal('loggingLevel');
-      if (config.getVal('loggingOnlyMsgInConsole') !== undefined) options['onlyMsgInConsole'] = config.getVal('loggingOnlyMsgInConsole');
+      if (config.getVal('logging.allowConsoleCatch') !== undefined) options['allowConsoleCatch'] = config.getVal('logging.allowConsoleCatch');
+      if (config.getVal('logging.level') !== undefined) options['level'] = config.getVal('logging.level');
+      if (config.getVal('logging.onlyMsgInConsole') !== undefined) options['onlyMsgInConsole'] = config.getVal('logging.onlyMsgInConsole');
       return options
     },
     deps: [ Config ]

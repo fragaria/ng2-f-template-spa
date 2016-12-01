@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="jumbotron">
+            <h1 class="display-3"><i class="fa fa-globe fa-3" aria-hidden="true"></i> {{ 'title' | translate }}</h1>
+            <dl>
+                <dt>{{ 'numberFormattingTitle' | translate }}</dt>
+                <dd>{{ 123456.456 | numberAsync | async }}</dd>
+                <dt>{{ 'dateFormattingTitle' | translate }}</dt>
+                <dd>{{ '2016-11-01T00:00:00+00:00' | dateAsync | async }}</dd>
+            </dl>
+        </div>
+    </div>
+</div>

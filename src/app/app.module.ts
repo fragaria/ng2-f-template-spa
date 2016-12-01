@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { Config } from './config';
 import { ItemModule } from './item';
+import { LanguageModule } from './language';
+import { CoreModule } from './core';
 import { SharedModule } from './shared';
 
 import { BootstrapModule } from './bootstrap';
@@ -21,10 +23,12 @@ import {
   imports: [
     BrowserModule,
     routing,
+    CoreModule,
     SharedModule,
     ItemModule,
     BootstrapModule,
     HttpModule,
+    LanguageModule,
     MockApiModule.forRoot()
   ],
   declarations: [AppComponent],

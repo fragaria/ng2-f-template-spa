@@ -2,7 +2,7 @@
 
 ### Popis
 
-Jedná se o modul, který lze použít k logování v projektu (umí odchytnout javascriptovou `console` a logují se pomocí něj chyby, které zachytává `angular 2` ).
+Jedná se o modul, který lze použít k logování v projektu (umí odchytnout javascriptovou `console` a logují se pomocí něj chyby, které zachytává `Angular 2` ).
 
 ### Příprava a použití
 
@@ -50,7 +50,7 @@ export class AppModule {
 ```js
 var appConfig = {
   // set log level to error
-  "loggingLevel": 2
+  "logging.level": 2
 }
 ```
 
@@ -189,9 +189,9 @@ export class MyService {
 
 Následující volby lze nastavit pro službu `Logger`
 
-- `allowConsoleCatch` povoluje zachycení js `console` (v `config.js` použijte jméno `loggingAllowConsoleCatch`)
-- `level` povolený level logování (v `config.js` použijte jméno `loggingLevel`)
-- `onlyMsgInConsole` do konzole se nevypisují extra data a data o uživateli (v `config.js` použijte jméno `loggingOnlyMsgInConsole`)
+- `allowConsoleCatch` povoluje zachycení js `console` (v `config.js` použijte jméno `logging.allowConsoleCatch`)
+- `level` povolený level logování (v `config.js` použijte jméno `logging.level`)
+- `onlyMsgInConsole` do konzole se nevypisují extra data a data o uživateli (v `config.js` použijte jméno `logging.onlyMsgInConsole`)
 
 
 ### Úrovně pro logovací službu
@@ -211,4 +211,4 @@ Následující volby lze nastavit pro službu `Logger`
 - `debug` logovuje ladící zprávy (zaloguje pokud není nastaven level na `OFF` nebo `ERROR` nebo` WARN` nebo `INFO`)
 - `log` logovuje ladící zprávy (zaloguje pokud není nastaven level na `OFF` nebo `ERROR` nebo` WARN` nebo `INFO` nebo `DEBUG`)
 
-[zpět](../README.md)
+[zpět na README](../README.md)

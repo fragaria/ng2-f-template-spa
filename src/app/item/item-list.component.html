@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <h1>Items:</h1>
+        <sa-title [title]="'items'" [titleIsTransKey]="true"></sa-title>
         <div class="list-group">
             <div *ngFor='let item of items | async' class="list-group-item">
                 <a (click)="onSelect(item)" class="btn btn-link">{{item.title}}</a>

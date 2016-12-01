@@ -133,6 +133,7 @@ module.exports = {
           // these packages have problems with their sourcemaps
           //helpers.root('node_modules/rxjs'),
           helpers.root('node_modules/@angular'),
+          helpers.root('node_modules/ng2-translate')
         ]
       }
     ],
@@ -155,7 +156,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: [helpers.root('*'), helpers.root('src', 'app', 'styles')],
         exclude: helpers.root('src', 'app'),
         loaders: ['style', 'css', 'postcss', 'sass']
       },

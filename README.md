@@ -10,8 +10,9 @@
 - Spusťte `npm install -g webpack webpack-dev-server typings typescript` pro instalaci globálních závislostí
 - Spusťte `npm install -g karma-cli protractor` pro instalaci globálních testovacích závislostí
 - Přidejte si do souboru `.npmrc` v projektu řádku `registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/` _(pozor, nikoliv .npmrc.txt)_
+> `echo "registry=https://kb-fast1.f-app.it/nexus/repository/npm-fast-group/" > .npmrc`
 - Spusťte `npm install` pro instalaci závislostí pro běh aplikace
-- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz. [config module](docs/config.md))
+- Spusťte `npm run init-conf` pro vytvoření devel konfigurace projektu (více viz [config module](docs/config.md))
 - Pokud chcete z tohoto seed projektu vytvořit nový projekt, pak spusťte `npm run init` z rootu projektu a zadávejte údaje dle pokynů (více viz. [init](docs/init.md))
 - Spusťte `npm start` pro naběhnutí aplikace v DEV režimu
 - Otevřete prohlížeč na [`http://localhost:8080`](http://localhost:8080)
@@ -22,6 +23,9 @@
 - `npm run e2e` - spuštění e2e testů (vyžaduje Javu a Chrome)
 - `npm run build:prod` - pro přípravu souborů pro produkční nasazení
 - `npm run docs`
+
+### Tasky (CI)
+- `npm run jenkins` vytvoří joby v Jenkinsu (více viz [jenkins](docs/jenkins.md))
 
 ### Tasky (validace)
 - `npm run sonar` pro spuštění analýzy souborů na chyby
@@ -44,17 +48,28 @@
   - `index.html` - vstupní stránka aplikace
   - `main.ts` - vstupní bod aplikace
 - `typings/` - typescript definice
+- `.bootstraprc` - konfigurace Bootstrapu a načítáni scss
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
 
 ### ng2-bootstrap BS4
 - `./src/app/styles/customization.scss` - nutne doplnit/zkontrolovat pouzivane glyphicons z duvodu kompatibility s bootstrap3
 
+### [Časté problémy a otázky](docs/troubleshooting.md)
+
+### Procesy
+
+- [build](docs/build.md)
+
 ### Moduly, které projekt obsahuje
 
 - [config](docs/config.md)
 - [logging](docs/logging.md)
 - [mock api](docs/mock-api.md)
+- [lokalizace](docs/ng2-translate.md)
+- [item](docs/item.md)
+- [core](docs/core.md)
+- [shared](docs/shared.md)
 
 ### Poznámky pro vývojáře
 
