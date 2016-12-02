@@ -10,6 +10,8 @@ const helpers = require('./helpers');
 var CopyWebpackPlugin = (CopyWebpackPlugin = require('copy-webpack-plugin'), CopyWebpackPlugin.default || CopyWebpackPlugin);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+// use for extract styles to separate file
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 /*
  * Webpack Constants
@@ -109,7 +111,11 @@ module.exports = {
       'angular2/platform/browser': helpers.root('node_modules/@angular/platform-browser/index.js'),
       'angular2/router': helpers.root('node_modules/@angular/router/index.js'),
       'angular2/http': helpers.root('node_modules/@angular/http/index.js'),
-      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js')
+      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
+      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
+      'variables.scss': helpers.root('src', 'app', 'styles', '_variables.scss'),
+      'mixins.scss': helpers.root('src', 'app', 'styles', '_mixins.scss'),
+      'app.scss': helpers.root('src', 'app', 'styles', 'app.scss'),
     },
   },
 
@@ -148,19 +154,23 @@ module.exports = {
         loader: "raw-loader",
         exclude: [helpers.root('src/index.html')]
       },
+      // used for build ng2 components scss files only
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
         exclude: helpers.root('src', 'app', 'styles'),
         loaders: ['raw', 'sass']
       },
+      // used for build global styles (include bootstrap fonts etc.)
       {
         test: /\.scss$/,
-        exclude: helpers.root('src', 'app'),
-        loaders: ['style', 'css', 'postcss', 'sass']
+        include: helpers.root('src', 'app', 'styles', 'main.scss'),
+        loaders: ['style', 'css', 'postcss-loader', 'sass']
+        // use for extract styles to separate file
+        // loader: ExtractTextPlugin.extract(['css', 'postcss-loader', 'sass'])
       },
       {
-        test: /\.(woff2?|ttf|eot|svg)$/,
+        test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000'
       },
     ],
@@ -223,6 +233,9 @@ module.exports = {
       from: 'src/assets',
       to: 'assets'
     }]),
+
+    // use for extract styles to extra file instead of insertation in style tag
+    // new ExtractTextPlugin('styles.[hash].css'),
 
     /*
      * Plugin: HtmlWebpackPlugin
