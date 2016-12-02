@@ -41,6 +41,7 @@
 @import "~bootstrap/scss/_utilities.scss";
 
 // font awesome
+$fa-font-path: "~font-awesome/fonts/"; // FIXME: move it to variables?
 @import "~font-awesome/scss/font-awesome.scss";
 
 @import "~app.scss";

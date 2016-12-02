@@ -165,12 +165,12 @@ module.exports = {
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app', 'styles', 'main.scss'),
-        loaders: ['style', 'css', 'postcss-loader', 'resolve-url', 'sass?sourceMap']
+        loaders: ['style', 'css', 'postcss-loader', 'sass']
         // use for extract styles to separate file
-        // loader: ExtractTextPlugin.extract(['css', 'postcss-loader', 'resolve-url', 'sass?sourceMap'])
+        // loader: ExtractTextPlugin.extract(['css', 'postcss-loader', 'sass'])
       },
       {
-        test: /\.(woff2?|ttf|eot|svg)$/,
+        test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000'
       },
     ],
