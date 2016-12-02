@@ -111,7 +111,11 @@ module.exports = {
       'angular2/platform/browser': helpers.root('node_modules/@angular/platform-browser/index.js'),
       'angular2/router': helpers.root('node_modules/@angular/router/index.js'),
       'angular2/http': helpers.root('node_modules/@angular/http/index.js'),
-      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js')
+      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
+      'angular2/http/testing': helpers.root('node_modules/@angular/http/testing.js'),
+      'variables.scss': helpers.root('src', 'app', 'styles', '_variables.scss'),
+      'mixins.scss': helpers.root('src', 'app', 'styles', '_mixins.scss'),
+      'app.scss': helpers.root('src', 'app', 'styles', 'app.scss'),
     },
   },
 

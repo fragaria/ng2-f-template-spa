@@ -1,7 +1,7 @@
 // Insert your variables (you can overwrite bootstrap variables here)
 
 // Boostrap variables
-@import "../../../node_modules/bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_variables.scss";
 
 @mixin xxx() {
   border-top: 2px solid red;
