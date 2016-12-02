@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const helpers = require('./helpers');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 /*
  * Webpack Plugins
@@ -11,6 +10,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = (CopyWebpackPlugin = require('copy-webpack-plugin'), CopyWebpackPlugin.default || CopyWebpackPlugin);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+// use for extract styles to separate file
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 /*
  * Webpack Constants
@@ -149,18 +150,20 @@ module.exports = {
         loader: "raw-loader",
         exclude: [helpers.root('src/index.html')]
       },
+      // used for build ng2 components scss files only
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
         exclude: helpers.root('src', 'app', 'styles'),
         loaders: ['raw', 'sass']
       },
+      // used for build global styles (include bootstrap fonts etc.)
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app', 'styles', 'main.scss'),
-        //loader: ExtractTextPlugin.extract(['css','sass'])
-        loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap']
-        //loaders: ['style', 'css', 'sass']
+        loaders: ['style', 'css', 'postcss-loader', 'resolve-url', 'sass?sourceMap']
+        // use for extract styles to separate file
+        // loader: ExtractTextPlugin.extract(['css', 'postcss-loader', 'resolve-url', 'sass?sourceMap'])
       },
       {
         test: /\.(woff2?|ttf|eot|svg)$/,
@@ -183,7 +186,6 @@ module.exports = {
       VERSION: JSON.stringify(require("../package.json").version)
     }),
 
-    //new ExtractTextPlugin("styles.css"),
     /*
      * Plugin: ForkCheckerPlugin
      * Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -227,6 +229,9 @@ module.exports = {
       from: 'src/assets',
       to: 'assets'
     }]),
+
+    // use for extract styles to extra file instead of insertation in style tag
+    // new ExtractTextPlugin('styles.[hash].css'),
 
     /*
      * Plugin: HtmlWebpackPlugin
