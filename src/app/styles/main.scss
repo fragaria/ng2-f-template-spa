@@ -1,6 +1,11 @@
+// Include all modules you need
 
-@import "../../../node_modules/bootstrap/scss/_mixins.scss";
+// project variables (contains bootstrap variables)
 @import "./variables.scss";
+
+// project mixins (contains bootstrap mixins)
+@import "./_mixins.scss";
+
 @import "../../../node_modules/bootstrap/scss/_normalize.scss";
 @import "../../../node_modules/bootstrap/scss/_print.scss";
 @import "../../../node_modules/bootstrap/scss/_reboot.scss";
@@ -34,4 +39,8 @@
 @import "../../../node_modules/bootstrap/scss/_popover.scss";
 @import "../../../node_modules/bootstrap/scss/_carousel.scss";
 @import "../../../node_modules/bootstrap/scss/_utilities.scss";
+
+// font awesome
+@import "../../../node_modules/font-awesome/scss/font-awesome.scss";
+
 @import "./app.scss";
