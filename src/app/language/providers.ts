@@ -1,11 +1,14 @@
 import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 import { Http } from '@angular/http';
-
 import { HttpRestJsonService } from '../core';
-import { TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler } from 'ng2-translate';
+
 import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
 import { Config } from '../config';
 import { Logger } from '../logging';
+import {
+    TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler,
+    DefaultTranslateParser
+} from 'ng2-translate';
 
 export function createTranslateProviders(module: string): any[] {
     return [
@@ -21,7 +24,7 @@ export function createTranslateProviders(module: string): any[] {
         },
         {
             provide: TranslateService,
-            useFactory: (tl: TranslateLoader, handler: MissingTranslationHandler) => new TranslateService(tl, handler),
+            useFactory: (tl: TranslateLoader, handler: MissingTranslationHandler) => new TranslateService(tl, new DefaultTranslateParser(), handler),
             deps: [TranslateLoader, MissingTranslationHandler]
         }
     ]
