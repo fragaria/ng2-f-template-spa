@@ -25,7 +25,7 @@ Vytváří tři výsledné `js` bundle soubory (polyfills.bundle.js, vendor.bund
 Pokud se provádí produkční build, tak všechny tři soubory obsahují ještě `hash` v názvu souboru (např. app.44db90e0cdb299124f27.bundle.js), který se mění se změnou souboru. Dále jsou minifikované pomocí [uglifyjs pluginu](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) a vytváří se pro ně source mapy.
 
 - `polyfills.bundle.js` obsahuje sesbíraný kód javascript obohacujících knihoven, jako je [core-js](https://github.com/zloirock/core-js) a [zone.js](https://github.com/angular/zone.js) (root z kterého se vychází pro sběr je soubor `src/polyfills.ts`)
-- `vendor.bundle.js` obsahuje sesbíraný kód vendor knihoven, jako je [bootstrap-loader](https://github.com/shakacode/bootstrap-loader/tree/v1), [rxjs](https://github.com/ReactiveX/RxJS) atd. (root z kterého se vychází pro sběr je soubor `src/vendor.ts`)
+- `vendor.bundle.js` obsahuje sesbíraný kód vendor knihoven, jako je  [rxjs](https://github.com/ReactiveX/RxJS) atd. (root z kterého se vychází pro sběr je soubor `src/vendor.ts`)
 - `app.bundle.js` obsahuje sesbíraný kód aplikace (root z kterého se vychází pro sběr je soubor `src/main.ts`)
 
 #### Vytváří výsledné `css` soubory

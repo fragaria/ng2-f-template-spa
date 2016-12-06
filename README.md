@@ -44,10 +44,10 @@
   - `coverage/html/` - html stránky s vizualizací pokrytí kódu testy
 - `src/` - zdrojové soubory aplikace
   - `app/` - aplikační kód
+    - `styles/` - obsahuje soubory pro stylování (logika načítání je v `main.scss`)
   - `assets/` - doplňující zdroje jako css, i18n, obrázky
   - `index.html` - vstupní stránka aplikace
   - `main.ts` - vstupní bod aplikace
-- `.bootstraprc` - konfigurace Bootstrapu a načítáni scss
 - `package.json` - konfigurace metadat projektu, skriptů a závislostí
 - `tslint.json` - konfigurace validací prováděných nad typescript soubory
 
