@@ -1,6 +1,7 @@
 {
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "tslint_custom_rules"
   ],
   "rules": {
     "directive-selector-name": [true, "camelCase"],
@@ -20,6 +21,7 @@
     "use-pipe-transform-interface": true,
     "pipe-naming": [false, "camelCase", "ng2f"],
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "Import-slim-observable-only": true
   }
 }
