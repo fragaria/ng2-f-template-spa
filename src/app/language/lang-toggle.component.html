@@ -1,2 +1,2 @@
-<button type="button" class="btn btn-sm" [ngClass]="{'btn-default:focus': lang == 'cs', 'btn-secondary-outline': lang !== 'cs'}" (click)="changeLanguage('cs')">{{ 'bu0916.czech' | translate }}</button>
-<button type="button" class="btn btn-sm" [ngClass]="{'btn-default:focus': lang == 'en', 'btn-secondary-outline': lang !== 'en'}" (click)="changeLanguage('en')">{{ 'bu0917.english' | translate }}</button>
+<button type="button" class="btn btn-outline-info" *ngIf="lang == 'en'" (click)="changeLanguage('cs')">{{ 'bu0916.czech' | translate }}</button>
+<button type="button" class="btn btn-outline-info" *ngIf="lang == 'cs'" (click)="changeLanguage('en')">{{ 'bu0917.english' | translate }}</button>
