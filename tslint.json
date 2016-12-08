@@ -1,7 +1,7 @@
 {
   "rulesDirectory": [
     "node_modules/codelyzer",
-    "tslint_custom_rules"
+    ".tslint_custom_rules"
   ],
   "rules": {
     "directive-selector-name": [true, "camelCase"],
