@@ -13,9 +13,6 @@ import { TranslateService } from 'ng2-translate';
           <li class="nav-item">
             <a routerLink="items" routerLinkActive="active" class="nav-link">{{ 'items' | translate }}</a>
           </li>
-          <li class="nav-item">
-            <a routerLink="clients" routerLinkActive="active" class="nav-link">Clients</a>
-          </li>
         </ul>
         <ul class="nav navbar-nav float-xs-right">
           <li class="nav-item">
