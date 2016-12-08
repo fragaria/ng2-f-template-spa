@@ -1,5 +1,5 @@
 {
-  "attr-lowercase": true,
+  "attr-lowercase": ["*ngFor", "*ngIf", "[(ngModel)]", "routerLink"],
   "attr-value-double-quotes": true,
   "doctype-first": false,
   "doctype-html5": true,
