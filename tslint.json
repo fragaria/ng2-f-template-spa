@@ -22,6 +22,6 @@
     "pipe-naming": [false, "camelCase", "ng2f"],
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "Import-slim-observable-only": true
+    "import-slim-observable-only": true
   }
 }
