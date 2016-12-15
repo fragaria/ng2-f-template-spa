@@ -1,0 +1,53 @@
+    .loading-placeholder {
+        text-align: center;
+        display: none;
+
+        .spinner-icon {
+            position: relative;
+            margin-left: -22px;
+            width: 40px;
+            height: 40px;
+            left: 50%;
+            border: solid 2px transparent;
+            border-top-color:  #999;
+            border-left-color: #999;
+            border-radius: 20px;
+            -webkit-animation: loading-placeholder 400ms linear infinite;
+            -moz-animation:    loading-placeholder 400ms linear infinite;
+            -ms-animation:     loading-placeholder 400ms linear infinite;
+            -o-animation:      loading-placeholder 400ms linear infinite;
+            animation:         loading-placeholder 400ms linear infinite;
+        }
+        @-webkit-keyframes loading-placeholder {
+            0%   { -webkit-transform: rotate(0deg);   transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-moz-keyframes loading-placeholder {
+            0%   { -moz-transform: rotate(0deg);   transform: rotate(0deg); }
+            100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-o-keyframes loading-placeholder {
+            0%   { -o-transform: rotate(0deg);   transform: rotate(0deg); }
+            100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @-ms-keyframes loading-placeholder {
+            0%   { -ms-transform: rotate(0deg);   transform: rotate(0deg); }
+            100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+        }
+        @keyframes loading-placeholder {
+            0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+            100% { transform: rotate(360deg); transform: rotate(360deg); }
+        }
+    }
+
+    .loading-placeholder-active {
+        display: block;
+    }
+    
+    .ng-content {
+        visibility: hidden;
+
+        &.visible {
+            visibility: visible;
+        }
+    }

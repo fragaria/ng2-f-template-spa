@@ -1,0 +1,6 @@
+<div class="loading-placeholder" [ngClass]="{'loading-placeholder-active': !loaded}">
+    <div class="spinner-icon"></div>
+</div>
+<div class="ng-content" [ngClass]="{'visible': loaded}">
+    <ng-content></ng-content>
+</div>

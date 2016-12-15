@@ -13,11 +13,15 @@ import { HttpError } from './errors';
 import { baseHandleError } from './utils';
 
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 type errorCallbackType = (error: Response | any) => Observable<Response>;
 
 @Injectable()
 export class HttpBaseService {
+  private subjLoading = new BehaviorSubject<boolean>(false);
+  public loadingChanged$ = this.subjLoading.asObservable();
+
   constructor(public http: Http, protected logger: Logger) {
     this.logger = logger;
   }
@@ -26,7 +30,10 @@ export class HttpBaseService {
     let args:any = [url];
     if (body !== undefined) args.push(body);
     args.push(options);
-    return this.http[method](...args).catch(error => errorCallback ? errorCallback(error) : this.handleError(error));
+    this.subjLoading.next(true);
+    return this.http[method](...args)
+        .catch(error => errorCallback ? errorCallback(error) : this.handleError(error))
+        .finally(() => this.subjLoading.next(false));
   }
 
   protected handleError (error: Response | any): Observable<Response> {
