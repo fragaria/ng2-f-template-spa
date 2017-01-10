@@ -105,6 +105,9 @@ module.exports = {
     // remove other default values
     modulesDirectories: [helpers.root('node_modules')],
 
+    // fallback is needed for npm link usage
+    fallback: helpers.root('node_modules'),
+
     alias: {
       'angular2/testing': helpers.root('node_modules/@angular/testing/index.js'),
       'angular2/core': helpers.root('node_modules/@angular/core/index.js'),
@@ -118,6 +121,9 @@ module.exports = {
       'app.scss': helpers.root('src', 'app', 'styles', 'app.scss'),
     },
   },
+
+  // fallback is needed for npm link usage
+  resolveLoader: { fallback: helpers.root('node_modules') },
 
   /*
    * Options affecting the normal modules.
