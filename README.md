@@ -70,3 +70,4 @@
 ### Poznámky pro vývojáře
 
 - [Promises vs Observables](docs/developers/promises-observables.md)
+
