@@ -16,6 +16,8 @@ import {
   LOGGER_PROVIDERS,
   LOGGING_ERROR_HANDLER_PROVIDERS } from './logging';
 
+import { HttpHelpersModule } from 'http-helpers-ng2';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import {
     ItemModule,
     HttpModule,
     LanguageModule,
+    HttpHelpersModule,
     MockApiModule.forRoot()
   ],
   declarations: [AppComponent],

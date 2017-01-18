@@ -137,9 +137,10 @@
     "bootstrap": "4.0.0-alpha.5",
     "core-js": "~2.4.1",
     "font-awesome": "~4.7.0",
+    "http-helpers-ng2": "0.0.1",
+    "ng2-f-mock-api": "~0.0.12",
     "ng2-translate": "~4.2.0",
     "rxjs": "5.0.1",
-    "zone.js": "~0.7.2",
-    "ng2-f-mock-api": "~0.0.12"
+    "zone.js": "~0.7.2"
   }
 }

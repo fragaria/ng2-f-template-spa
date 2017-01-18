@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { HttpRestJsonService } from '../core';
 import { Config } from '../config';
 import { Item } from './item.model';
 
 import { Observable } from 'rxjs/Observable';
+
+import { HttpRestJsonService } from 'http-helpers-ng2';
 
 @Injectable()
 export class ItemService {

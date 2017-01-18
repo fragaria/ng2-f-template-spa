@@ -1,8 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HttpBaseService, HttpRestJsonService } from './http';
-
 import { SharedModule } from '../shared';
 import { HomeComponent } from './home.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -14,7 +12,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
   ],
   declarations: [ HomeComponent, PageNotFoundComponent ],
   exports: [ HomeComponent, PageNotFoundComponent ],
-  providers: [ HttpBaseService, HttpRestJsonService ]
 })
 export class CoreModule {
 

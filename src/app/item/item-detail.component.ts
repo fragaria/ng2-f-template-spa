@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { HttpError } from '../core';
-
 import { Item } from './item.model';
 import { ItemService } from './item.service';
+
+import { HttpError } from 'http-helpers-ng2';
 
 @Component({
   selector: 'sa-item-detail',

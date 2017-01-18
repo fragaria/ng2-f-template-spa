@@ -1,6 +1,5 @@
 import { ModuleWithProviders, FactoryProvider }     from '@angular/core';
 import { Http } from '@angular/http';
-import { HttpRestJsonService } from '../core';
 
 import { CustomTranslateLoader, AppMissingTranslationHandler } from './custom-translate-loader.service';
 import { Config } from '../config';
@@ -9,6 +8,8 @@ import {
     TranslateModule, TranslateService, TranslateLoader, MissingTranslationHandler,
     DefaultTranslateParser
 } from 'ng2-translate';
+
+import { HttpRestJsonService } from 'http-helpers-ng2';
 
 export function createTranslateProviders(module: string): any[] {
     return [

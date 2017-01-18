@@ -1,9 +1,11 @@
 import { TranslateLoader, TranslateStaticLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from "ng2-translate";
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
-import { HttpRestJsonService } from '../core';
+
 import { Config } from '../config';
 import { Logger } from '../logging';
+
+import { HttpRestJsonService } from 'http-helpers-ng2';
 
 interface LangModel {lang: string; route:string; data:string;
 }
